@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.umpbizgo.EmailLoginRegister.EmailLoginActivity;
 import com.example.umpbizgo.EmailLoginRegister.EmailRegisterActivity;
+import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.R;
 
 public class PhoneLoginActivity extends AppCompatActivity {
@@ -33,6 +34,13 @@ public class PhoneLoginActivity extends AppCompatActivity {
         Intent intent = new Intent(PhoneLoginActivity.this, PhoneRegisterActivity.class);
         startActivity(intent);
         Animatoo.animateSwipeLeft(this);
+        finish();
+    }
+
+    public void BackToMainPage(View view) {
+        Intent intent = new Intent(PhoneLoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        Animatoo.animateSlideUp(this);
         finish();
     }
 }
