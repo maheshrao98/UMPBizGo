@@ -36,10 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ///// Hide Status Bar Start//////
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-            Window w = getWindow();
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ///// Hide Status Bar End//////
 
         emailContinueBtn = (LinearLayout) findViewById(R.id.linearlayoutemail) ;
@@ -107,5 +104,12 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable,speedScroll);
+    }
+
+    public void goToHomePage(View view) {
+        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
+        Animatoo.animateSwipeLeft(MainActivity.this);
     }
 }

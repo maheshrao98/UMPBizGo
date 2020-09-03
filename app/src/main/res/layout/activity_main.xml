@@ -25,6 +25,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
         android:text="Skip"
+        android:onClick="goToHomePage"
         android:textColor="@color/colorAccent"
         android:textAllCaps="false"
         android:background="@drawable/skip_button"

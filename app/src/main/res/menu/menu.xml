@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+    android:id="@+id/orders"
+    android:icon="@drawable/orders"
+    android:title="Orders"/>
+
+    <item
+        android:id="@+id/payment"
+        android:icon="@drawable/gold"
+        android:title="Payment"/>
+
+    <item
+        android:id="@+id/videos"
+        android:icon="@drawable/videos"
+        android:title="Videos"/>
+
+    <item
+        android:id="@+id/goout"
+        android:icon="@drawable/goout"
+        android:title="Log Out"/>
+</menu>

@@ -23,10 +23,7 @@ public class PhoneRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_register);
 
         ///// Hide Status Bar Start//////
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-            Window w = getWindow();
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ///// Hide Status Bar End//////
     }
 
