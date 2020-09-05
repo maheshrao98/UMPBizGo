@@ -6,9 +6,9 @@
     android:title="Orders"/>
 
     <item
-        android:id="@+id/payment"
+        android:id="@+id/gold"
         android:icon="@drawable/gold"
-        android:title="Payment"/>
+        android:title="Gold"/>
 
     <item
         android:id="@+id/videos"
@@ -19,4 +19,9 @@
         android:id="@+id/goout"
         android:icon="@drawable/goout"
         android:title="Log Out"/>
+
+    <item
+        android:id="@+id/myaccount"
+        android:icon="@drawable/account_icon"
+        android:title="Account"/>
 </menu>

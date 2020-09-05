@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.example.umpbizgo.Fragments.LogOutFragment;
+import com.example.umpbizgo.Fragments.MyAccountBeforeLogin;
 import com.example.umpbizgo.Fragments.OrderFragment;
-import com.example.umpbizgo.Fragments.PaymentFragment;
+import com.example.umpbizgo.Fragments.GoldFragment;
 import com.example.umpbizgo.Fragments.VideosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -48,8 +48,8 @@ public class HomeActivity extends AppCompatActivity {
                             selectedFragment = new OrderFragment();
                             break;
 
-                        case R.id.payment:
-                            selectedFragment = new PaymentFragment();
+                        case R.id.gold:
+                            selectedFragment = new GoldFragment();
                             break;
 
                         case R.id.videos:
@@ -58,6 +58,9 @@ public class HomeActivity extends AppCompatActivity {
 
                         case R.id.goout:
                             selectedFragment = new LogOutFragment();
+                            break;
+                        case R.id.myaccount:
+                            selectedFragment = new MyAccountBeforeLogin();
                             break;
                     }
                     ///////////////Replacing by default fragment on home activity/////////////////
