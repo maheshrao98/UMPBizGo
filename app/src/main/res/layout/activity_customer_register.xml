@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhoneLoginRegister.PhoneLoginActivity">
+    android:background="@android:color/white"
+    tools:context=".CustomerLoginRegister.CustomerRegisterActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -27,7 +28,9 @@
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/back_button_icon" />
 
+
     </RelativeLayout>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -43,12 +46,12 @@
         app:layout_constraintTop_toTopOf="@+id/relativeLayout">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="cursive"
             android:gravity="center"
-            android:text="Sign In"
+            android:text="Sign Up"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
@@ -65,40 +68,73 @@
         app:layout_constraintVertical_bias="0.0">
 
         <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/skip_button"
-        android:drawableLeft="@drawable/phone_icon"
-        android:drawablePadding="8dp"
-        android:drawableTint="@color/colorPrimaryDark"
-        android:elevation="20dp"
-        android:hint="Mobile Number"
-        android:inputType="number"
-        android:maxLength="12"
-        android:padding="16dp" />
+            android:id="@+id/emailusernameinput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/skip_button"
+            android:drawableLeft="@drawable/name_icon"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:elevation="20dp"
+            android:hint="Name"
+            android:inputType="text"
+            android:padding="16dp" />
 
+        <EditText
+            android:id="@+id/emailinput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/skip_button"
+            android:drawableLeft="@drawable/email_icon"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:elevation="20dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="16dp" />
+
+        <EditText
+            android:id="@+id/emailpasswordinput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/skip_button"
+            android:drawableLeft="@drawable/password_icon"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:elevation="20dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="16dp" />
 
         <TextView
-            android:onClick="goToRegister"
+            android:onClick="goToLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Don't have an account?"
+            android:text="Already have an account?"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="right"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
 
             />
+
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/emailregisterbutton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -113,5 +149,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.764" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

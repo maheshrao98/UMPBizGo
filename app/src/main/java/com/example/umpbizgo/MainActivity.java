@@ -5,20 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.umpbizgo.Adapters.PlateAdapter;
-import com.example.umpbizgo.EmailLoginRegister.EmailLoginActivity;
-import com.example.umpbizgo.EmailLoginRegister.EmailRegisterActivity;
+import com.example.umpbizgo.CustomerLoginRegister.CustomerLoginActivity;
 import com.example.umpbizgo.Models.PlateModel;
-import com.example.umpbizgo.PhoneLoginRegister.PhoneLoginActivity;
+import com.example.umpbizgo.SellerLoginRegister.SellerLoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ///// Maintain the screen orientation portrait ///////
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ///// Hide Status Bar Start//////
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         emailContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, EmailLoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, CustomerLoginActivity.class);
                 startActivity(intent);
                 Animatoo.animateSlideDown(MainActivity.this);
             }
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         phoneContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PhoneLoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, SellerLoginActivity.class);
                 startActivity(intent);
                 Animatoo.animateSlideDown(MainActivity.this);
             }

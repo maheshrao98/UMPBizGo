@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhoneLoginRegister.PhoneRegisterActivity">
+    tools:context=".SellerLoginRegister.SellerLoginActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -26,6 +26,7 @@
             android:tint="@android:color/white"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/back_button_icon" />
+
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
@@ -47,7 +48,7 @@
             android:layout_gravity="center"
             android:fontFamily="cursive"
             android:gravity="center"
-            android:text="Sign Up"
+            android:text="Sign In"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
@@ -57,48 +58,63 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/buttonsellerlogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.0">
 
         <EditText
+            android:id="@+id/sellerloginemailinput"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:background="@drawable/skip_button"
-            android:drawableLeft="@drawable/phone_icon"
+            android:drawableLeft="@drawable/email_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
             android:elevation="20dp"
-            android:hint="Mobile Number"
-            android:inputType="number"
-            android:maxLength="12"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="16dp" />
+
+        <EditText
+            android:id="@+id/sellerloginpasswordinput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/skip_button"
+            android:drawableLeft="@drawable/password_icon"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:elevation="20dp"
+            android:hint="Password"
+            android:inputType="textPassword"
             android:padding="16dp" />
 
 
-
         <TextView
-            android:onClick="goToLogin"
+            android:onClick="goToRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Already have an account?"
+            android:text="Don't have an account?"
             android:textColor="@color/colorPrimaryDark"
             android:gravity="right"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
 
             />
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonsellerlogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -113,5 +129,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBarsellerlog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

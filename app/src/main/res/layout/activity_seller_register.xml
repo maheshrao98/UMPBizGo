@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context=".EmailLoginRegister.EmailRegisterActivity">
+    tools:context=".SellerLoginRegister.SellerRegisterActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -27,10 +26,7 @@
             android:tint="@android:color/white"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/back_button_icon" />
-
-
     </RelativeLayout>
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -46,7 +42,7 @@
         app:layout_constraintTop_toTopOf="@+id/relativeLayout">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="cursive"
@@ -61,13 +57,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/registersellerbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         app:layout_constraintVertical_bias="0.0">
 
+
         <EditText
+            android:id="@+id/sellerregisterusernameinput"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="16dp"
@@ -83,6 +81,24 @@
             android:padding="16dp" />
 
         <EditText
+            android:id="@+id/sellerregisterbusinessinput"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/skip_button"
+            android:drawableLeft="@drawable/business_icon"
+            android:drawablePadding="8dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:elevation="20dp"
+            android:hint="Business Name"
+            android:inputType="text"
+            android:maxLength="12"
+            android:padding="16dp" />
+
+        <EditText
+            android:id="@+id/sellerregisteremailinput"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="16dp"
@@ -98,6 +114,7 @@
             android:padding="16dp" />
 
         <EditText
+            android:id="@+id/sellerregisterpasswordinput"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="16dp"
@@ -113,6 +130,8 @@
             android:inputType="textPassword"
             android:padding="16dp" />
 
+
+
         <TextView
             android:onClick="goToLogin"
             android:layout_width="match_parent"
@@ -123,15 +142,14 @@
             android:gravity="right"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
 
             />
-
 
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/registersellerbutton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -147,5 +165,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/progressBarsellerreg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

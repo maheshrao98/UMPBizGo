@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "587741401024",
+    "firebase_url": "https://umpbizgo-284715.firebaseio.com",
+    "project_id": "umpbizgo-284715",
+    "storage_bucket": "umpbizgo-284715.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587741401024:android:638fc72e03781f40154225",
+        "android_client_info": {
+          "package_name": "com.example.umpbizgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587741401024-ahkfqeij1aiisul6ke4gv3uorgt4djk3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.umpbizgo",
+            "certificate_hash": "b28d92cb1dd9eba937d6118e43373c8f67f1e23d"
+          }
+        },
+        {
+          "client_id": "587741401024-b2l7gr071d7i73ur9m0jhd15695umnsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYqSac58I0UmEPpFwk72s7hXM2TwZiw5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587741401024-b2l7gr071d7i73ur9m0jhd15695umnsk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

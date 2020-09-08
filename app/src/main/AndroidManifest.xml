@@ -11,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".PhoneLoginRegister.PhoneRegisterActivity" />
-        <activity android:name=".PhoneLoginRegister.PhoneLoginActivity" />
-        <activity android:name=".EmailLoginRegister.EmailRegisterActivity" />
-        <activity android:name=".EmailLoginRegister.EmailLoginActivity" />
+        <activity android:name=".Customer.UserProfileActivity"/>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".SellerLoginRegister.SellerRegisterActivity" />
+        <activity android:name=".SellerLoginRegister.SellerLoginActivity" />
+        <activity android:name=".CustomerLoginRegister.CustomerRegisterActivity" />
+        <activity android:name=".CustomerLoginRegister.CustomerLoginActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
