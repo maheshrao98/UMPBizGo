@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/frame_search_product"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.SearchProductFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorAccent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:hint="Search Products Here"
+            android:background="@drawable/skip_button"
+            android:drawableRight="@drawable/search"
+            android:id="@+id/search_text"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:queryHint="Search"
+            android:layout_height="?actionBarSize" >
+
+    </EditText>
+        
+    </RelativeLayout>
+    
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/relative_layout_4">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+
+</FrameLayout>

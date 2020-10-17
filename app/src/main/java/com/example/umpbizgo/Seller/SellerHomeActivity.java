@@ -1,9 +1,8 @@
-package com.example.umpbizgo;
+package com.example.umpbizgo.Seller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -11,23 +10,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.example.umpbizgo.Fragments.GoldFragment;
 import com.example.umpbizgo.Fragments.LogOutFragment;
 import com.example.umpbizgo.Fragments.MyAccountBeforeLogin;
 import com.example.umpbizgo.Fragments.OrderFragment;
-import com.example.umpbizgo.Fragments.GoldFragment;
 import com.example.umpbizgo.Fragments.VideosFragment;
+import com.example.umpbizgo.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity {
-
+public class SellerHomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_seller_home);
 
         ///// Maintain the screen orientation portrait ///////
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -38,8 +36,6 @@ public class HomeActivity extends AppCompatActivity {
 
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottonnavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigation);
-
-
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navigation =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,18 +47,18 @@ public class HomeActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
 
                         case R.id.orders:
-                            selectedFragment = new OrderFragment();
+                            selectedFragment = new PickCategoryFragment();
                             break;
 
-                        case R.id.gold:
+                        case R.id.products:
                             selectedFragment = new GoldFragment();
                             break;
 
-                        case R.id.videos:
+                        case R.id.home:
                             selectedFragment = new VideosFragment();
                             break;
 
-                        case R.id.goout:
+                        case R.id.feed:
                             selectedFragment = new LogOutFragment();
                             break;
                         case R.id.myaccount:

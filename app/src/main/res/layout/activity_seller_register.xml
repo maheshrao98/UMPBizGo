@@ -94,7 +94,6 @@
             android:elevation="20dp"
             android:hint="Business Name"
             android:inputType="text"
-            android:maxLength="12"
             android:padding="16dp" />
 
         <EditText
@@ -127,6 +126,7 @@
             android:drawableTint="@color/colorPrimaryDark"
             android:elevation="20dp"
             android:hint="Password"
+            android:maxLength="12"
             android:inputType="textPassword"
             android:padding="16dp" />
 

@@ -47,7 +47,7 @@
         app:srcCompat="@drawable/logo" />
 
     <LinearLayout
-        android:id="@+id/linearlayoutphone"
+        android:id="@+id/linearlayoutseller"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -83,7 +83,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearlayoutemail"
+        android:id="@+id/linearlayoutcustomer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -92,7 +92,7 @@
         android:background="@drawable/linear_corners"
         android:elevation="10dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearlayoutphone"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayoutseller"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -126,7 +126,7 @@
         android:textAlignment="center"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearlayoutphone"
+        app:layout_constraintEnd_toEndOf="@+id/linearlayoutcustomer"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/linearlayoutphone" />
+        app:layout_constraintStart_toStartOf="@+id/linearlayoutcustomer" />
 </androidx.constraintlayout.widget.ConstraintLayout>

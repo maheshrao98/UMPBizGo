@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-    android:id="@+id/orders"
-    android:icon="@drawable/orders"
-    android:title="Orders"/>
+    android:id="@+id/products"
+    android:icon="@drawable/shopping_bags"
+    android:title="Products"/>
 
     <item
-        android:id="@+id/gold"
-        android:icon="@drawable/gold"
-        android:title="Gold"/>
+        android:id="@+id/orders"
+        android:icon="@drawable/airplane"
+        android:title="Orders"/>
 
     <item
-        android:id="@+id/videos"
-        android:icon="@drawable/videos"
-        android:title="Videos"/>
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home"/>
 
     <item
-        android:id="@+id/goout"
+        android:id="@+id/feed"
         android:icon="@drawable/goout"
-        android:title="Log Out"/>
+        android:title="Feed"/>
 
     <item
         android:id="@+id/myaccount"

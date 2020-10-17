@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class LogOutFragment extends Fragment implements View.OnClickListener {
-    private Button logOutButton;
+public class LogOutFragment extends Fragment  {
     View view;
 
 
@@ -35,17 +35,14 @@ public class LogOutFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_log_out, container, false);
-        Context context;
-        logOutButton = (Button) view.findViewById(R.id.logoutbtn);
-        logOutButton.setOnClickListener(this);
         return view;
     }
 
-
     @Override
-    public void onClick(View view) {
-        ///Log Out Process////
+    public void onStart() {
+        super.onStart();
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getActivity(), MainActivity.class));
     }
+
 }

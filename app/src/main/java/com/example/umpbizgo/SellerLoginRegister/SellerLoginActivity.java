@@ -18,6 +18,7 @@ import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.umpbizgo.Customer.UserProfileActivity;
 import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.R;
+import com.example.umpbizgo.Seller.SellerHomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -89,7 +90,7 @@ public class SellerLoginActivity extends AppCompatActivity {
                     Toast.makeText(SellerLoginActivity.this,"User logged in successful",Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
 
-                    Intent intent = new Intent(SellerLoginActivity.this, UserProfileActivity.class);
+                    Intent intent = new Intent(SellerLoginActivity.this, SellerHomeActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(SellerLoginActivity.this,"Error!!!" + task.getException().getMessage() ,Toast.LENGTH_SHORT).show();

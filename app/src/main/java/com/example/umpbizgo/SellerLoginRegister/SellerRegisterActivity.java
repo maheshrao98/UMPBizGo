@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,32 +15,26 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.example.umpbizgo.CustomerLoginRegister.CustomerRegisterActivity;
-import com.example.umpbizgo.HomeActivity;
+import com.example.umpbizgo.CustomerLoginRegister.CustomerLoginActivity;
 import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.R;
-import com.example.umpbizgo.Models.SellerModel;
+import com.example.umpbizgo.Seller.SellerHomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
-import java.util.Map;
-
 
 public class SellerRegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText Username,BusinessName,Password,EmailAddress;
     private ProgressBar progressBar;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore mFirestore;
     private static final String TAG = "TAG" ;
-    String userID;
+    String sellerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +50,15 @@ public class SellerRegisterActivity extends AppCompatActivity implements View.On
         progressBar.setVisibility(View.GONE);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        mFirestore = FirebaseFirestore.getInstance();
 
         findViewById(R.id.registersellerbutton).setOnClickListener(this);
 
         ///// Hide Status Bar Start//////
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ///// Hide Status Bar End//////
+
+        ///// Maintain the screen orientation portrait ///////
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
     @Override
@@ -70,7 +67,7 @@ public class SellerRegisterActivity extends AppCompatActivity implements View.On
         ///// Check if the user is already logged in/////
         if(firebaseAuth.getCurrentUser() !=null){
             ///// If User already logged in, then direct user to Home Activity/////
-            Intent intent = new Intent(SellerRegisterActivity.this, HomeActivity.class);
+            Intent intent = new Intent(SellerRegisterActivity.this, SellerHomeActivity.class);
             startActivity(intent);
             finish();
         }
@@ -81,7 +78,7 @@ public class SellerRegisterActivity extends AppCompatActivity implements View.On
         emailaddress=EmailAddress.getText().toString().trim();
         password= Password.getText().toString().trim();
         username = Username.getText().toString().trim();
-        businessname = BusinessName.getText().toString().trim();
+        businessname = BusinessName.getText().toString();
 
         ///Seller Information Validation///
         if(TextUtils.isEmpty(emailaddress)){
@@ -109,36 +106,38 @@ public class SellerRegisterActivity extends AppCompatActivity implements View.On
 
         if(TextUtils.isEmpty(businessname)){
             BusinessName.setError("Business Name is required.");
-            BusinessName.requestFocus();
             return;
         }
 
         progressBar.setVisibility(View.VISIBLE);
 
-        //Register the user with FIREBASE Email Authentication and store information in CLOUD FIRESTORE//
+        //Register the user with FIREBASE Email Authentication and store information in Realtime Database//
         firebaseAuth.createUserWithEmailAndPassword(emailaddress,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             ///Store the additional information in firebase database////
-                            userID = firebaseAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = mFirestore.collection("Sellers")
-                            .document(userID);
-                            Map<String, Object> seller = new HashMap<>();
+                            sellerID = firebaseAuth.getCurrentUser().getUid();
+                            final DatabaseReference sellerReference;
+                            sellerReference = FirebaseDatabase.getInstance().getReference();
+
+                            HashMap<String, Object> seller = new HashMap<>();
+                            seller.put("sid",sellerID);
                             seller.put("username", username);
                             seller.put("email",emailaddress);
                             seller.put("password",password);
                             seller.put("businessname",businessname);
-                            documentReference.set(seller).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccess: User profile is created for" + userID);
-                                }
-                            });
+                            sellerReference.child("Sellers").child(sellerID).updateChildren(seller)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Log.d(TAG, "onSuccess: User profile is created for" + sellerID);
+                                        }
+                                    });
                             progressBar.setVisibility(View.GONE);
 
-                            Intent intent = new Intent(SellerRegisterActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(SellerRegisterActivity.this, SellerHomeActivity.class);
                             startActivity(intent);
                         } else{
                             Toast.makeText(SellerRegisterActivity.this,"Error!!!" + task.getException().getMessage() ,Toast.LENGTH_SHORT).show();
@@ -149,7 +148,7 @@ public class SellerRegisterActivity extends AppCompatActivity implements View.On
     }
 
     public void goToLogin(View view) {
-        Intent intent = new Intent(SellerRegisterActivity.this, SellerLoginActivity.class);
+        Intent intent = new Intent(SellerRegisterActivity.this, CustomerLoginActivity.class);
         startActivity(intent);
         Animatoo.animateSwipeRight(this);
         finish();

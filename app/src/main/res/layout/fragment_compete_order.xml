@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/frame_complete_order"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".Customer.CompleteOrderFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimaryDeep"
+            android:layout_alignParentTop="true"
+            >
+
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Shipment Details"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:layout_margin="15dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayoutshipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/relative_layout_1">
+
+                <EditText
+                    android:id="@+id/shipment_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:padding="20dp"
+                    android:background="@drawable/linear_corners"
+                    android:hint="Name"
+                    />
+                <EditText
+                    android:id="@+id/shipment_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shipment_name"
+                    android:background="@drawable/linear_corners"
+                    android:padding="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Phone Number" />
+
+                <EditText
+                    android:id="@+id/shipment_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shipment_phone_number"
+                    android:background="@drawable/linear_corners"
+                    android:padding="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Home Address" />
+
+                <EditText
+                    android:id="@+id/shipment_city_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shipment_address"
+                    android:background="@drawable/linear_corners"
+                    android:padding="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="City Address" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/confirm_final_order_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="314dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Confirm"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+</FrameLayout>

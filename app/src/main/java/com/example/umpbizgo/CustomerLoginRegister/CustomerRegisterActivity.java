@@ -10,36 +10,30 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.example.umpbizgo.HomeActivity;
+import com.example.umpbizgo.Customer.HomeActivity;
 import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-import java.util.Map;
 
-
-public class CustomerRegisterActivity extends AppCompatActivity {
+public class CustomerRegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "TAG" ;
     private EditText emailinput, passwordinput , usernameinput;
-    private Button emailregisterbtn;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
-    private FirebaseFirestore mFirestore;
     String userID;
 
     @Override
@@ -55,14 +49,20 @@ public class CustomerRegisterActivity extends AppCompatActivity {
         ///// Hide Status Bar End//////
 
         mAuth = FirebaseAuth.getInstance();
-        mFirestore = FirebaseFirestore.getInstance();
 
         usernameinput= findViewById(R.id.emailusernameinput);
         emailinput= findViewById(R.id.emailinput);
         passwordinput = findViewById(R.id.emailpasswordinput);
-        emailregisterbtn = findViewById(R.id.emailregisterbutton);
 
         progressBar = findViewById(R.id.progressBar);
+
+        findViewById(R.id.customerregisterbutton).setOnClickListener(this);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         ///// Check if the user is already logged in/////
         if(mAuth.getCurrentUser() != null){
@@ -71,18 +71,9 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
-        emailregisterbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registernewUserwithEmail();
-            }
-        });
-
     }
 
-
-    private void registernewUserwithEmail() {
+    private void registerCustomer() {
         String emailAddress,password,username;
         emailAddress=emailinput.getText().toString();
         password= passwordinput.getText().toString().trim();
@@ -105,24 +96,27 @@ public class CustomerRegisterActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        //Register the user with FIREBASE Email Authentication and store information in CLOUD FIRESTORE//
+        //Register the user with FIREBASE Email Authentication and store information in Realtime Database//
         mAuth.createUserWithEmailAndPassword(emailAddress,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(CustomerRegisterActivity.this,"Registration successful",Toast.LENGTH_SHORT).show();
                     userID = mAuth.getCurrentUser().getUid();
-                    DocumentReference documentReference = mFirestore.collection("Users").document(userID);
-                    Map<String, Object> user = new HashMap<>();
+                    final DatabaseReference CustomerReference;
+                    CustomerReference = FirebaseDatabase.getInstance().getReference();
+                    HashMap<String, Object> user = new HashMap<>();
+                    user.put("uid", userID);
                     user.put("username", username);
                     user.put("email",emailAddress);
                     user.put("password",password);
-                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    CustomerReference.child("Users").child(userID).updateChildren(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "onSuccess: User profile is created for" + userID);
+                        public void onComplete(@NonNull Task<Void> task) {
+                                Log.d(TAG, "onSuccess: User profile is created for" + userID);
                         }
                     });
+
                     progressBar.setVisibility(View.GONE);
 
                     Intent intent = new Intent(CustomerRegisterActivity.this, HomeActivity.class);
@@ -151,5 +145,14 @@ public class CustomerRegisterActivity extends AppCompatActivity {
         startActivity(intent);
         Animatoo.animateSlideUp(this);
         finish();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.customerregisterbutton:
+                registerCustomer();
+                break;
+        }
     }
 }

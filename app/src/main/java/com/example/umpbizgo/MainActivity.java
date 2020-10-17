@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.umpbizgo.Adapters.PlateAdapter;
+import com.example.umpbizgo.Customer.HomeActivity;
 import com.example.umpbizgo.CustomerLoginRegister.CustomerLoginActivity;
 import com.example.umpbizgo.Models.PlateModel;
 import com.example.umpbizgo.SellerLoginRegister.SellerLoginActivity;
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<PlateModel> plateModelList;
     private PlateAdapter plateAdapter;
-    private LinearLayout emailContinueBtn,phoneContinueBtn;
+    private LinearLayout customerContinueBtn,sellerContinueBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ///// Hide Status Bar End//////
 
-        emailContinueBtn = (LinearLayout) findViewById(R.id.linearlayoutemail) ;
-        phoneContinueBtn = (LinearLayout) findViewById(R.id.linearlayoutphone) ;
+        customerContinueBtn = (LinearLayout) findViewById(R.id.linearlayoutcustomer) ;
+        sellerContinueBtn = (LinearLayout) findViewById(R.id.linearlayoutseller) ;
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -64,12 +66,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(plateAdapter);
         plateAdapter.notifyDataSetChanged();
 
-        ////////////call autoscroll start////////////////
+        ////////////call autoscroll////////////////
         autoScroll();
-        ////////////call autoscroll end/////////////////
 
         ////////////continue with email/////////////////
-        emailContinueBtn.setOnClickListener(new View.OnClickListener() {
+       customerContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CustomerLoginActivity.class);
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ////////////continue with email/////////////////
-        phoneContinueBtn.setOnClickListener(new View.OnClickListener() {
+        sellerContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SellerLoginActivity.class);

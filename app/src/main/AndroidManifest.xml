@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Customer.UserProfileActivity"/>
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".Seller.SellerHomeActivity" />
+        <activity android:name=".Customer.UserProfileActivity" />
+        <activity android:name=".Customer.HomeActivity" />
         <activity android:name=".SellerLoginRegister.SellerRegisterActivity" />
         <activity android:name=".SellerLoginRegister.SellerLoginActivity" />
         <activity android:name=".CustomerLoginRegister.CustomerRegisterActivity" />
@@ -25,6 +26,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
