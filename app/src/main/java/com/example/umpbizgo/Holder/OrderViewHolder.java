@@ -12,13 +12,13 @@ import com.example.umpbizgo.R;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public ItemClickListener listener;
-    public TextView username, orderID, userTotalPrice, userShippingAddress, userDateTime;
+    public TextView orderstatus, orderID, userTotalPrice, userShippingAddress, userDateTime;
     public Button showorderproductbtn;
 
 
     public OrderViewHolder(@NonNull View itemView) {
         super(itemView);
-        username = itemView.findViewById(R.id.order_user_name);
+        orderstatus = itemView.findViewById(R.id.order_status);
         orderID = itemView.findViewById(R.id.order_id);
         userTotalPrice = itemView.findViewById(R.id.order_total_price);
         userDateTime = itemView.findViewById(R.id.order_date_time);

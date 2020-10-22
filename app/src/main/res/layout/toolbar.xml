@@ -9,5 +9,4 @@
     app:contentInsetStart="@dimen/view_margin">
 
 
-
     </androidx.appcompat.widget.Toolbar>

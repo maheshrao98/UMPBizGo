@@ -70,7 +70,7 @@
         <EditText
             android:id="@+id/emailusernameinput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -80,13 +80,14 @@
             android:drawableTint="@color/colorPrimaryDark"
             android:elevation="20dp"
             android:hint="Name"
+            android:textColorHint="@color/colorPrimaryDark"
             android:inputType="text"
             android:padding="16dp" />
 
         <EditText
             android:id="@+id/emailinput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -96,13 +97,14 @@
             android:drawableTint="@color/colorPrimaryDark"
             android:elevation="20dp"
             android:hint="Email"
+            android:textColorHint="@color/colorPrimaryDark"
             android:inputType="textEmailAddress"
             android:padding="16dp" />
 
         <EditText
             android:id="@+id/emailpasswordinput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -113,6 +115,7 @@
             android:drawableTint="@color/colorPrimaryDark"
             android:elevation="20dp"
             android:hint="Password"
+            android:textColorHint="@color/colorPrimaryDark"
             android:inputType="textPassword"
             android:padding="16dp" />
 
@@ -141,9 +144,10 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="48dp"
         android:background="@color/colorPrimaryDark"
-        android:drawableRight="@drawable/rigt_arrow"
+        android:drawableEnd="@drawable/rigt_arrow"
         android:drawableTint="@android:color/white"
         android:text="Continue"
+        android:textSize="20sp"
         android:elevation="20dp"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

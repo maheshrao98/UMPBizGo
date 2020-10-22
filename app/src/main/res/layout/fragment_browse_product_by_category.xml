@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:id="@+id/frame_view_customer_order"
+    android:id="@+id/frame_browse_product_category"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer.CustomerViewOrdersFragment">
+    android:background="@android:color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,9 +18,9 @@
 
             <include
                 android:id="@+id/toolbar"
-                layout="@layout/toolbar"
-                >
+                layout="@layout/toolbar">
             </include>
+
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -36,10 +34,9 @@
                     android:orientation="vertical">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/orders_list"
+                        android:id="@+id/recycler_menu"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
                         android:scrollbars="vertical"
                         >
 
@@ -51,5 +48,4 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

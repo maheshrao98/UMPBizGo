@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +40,9 @@ import java.util.HashMap;
 public class ProductDetailsFragment extends Fragment {
     private Button addtocartButton;
     private ImageView productImage;
+    private ImageButton backtoproductbutton;
     private ElegantNumberButton numberButton;
-    private TextView productPrice, productDescription, productName, brandName;
+    private TextView productPrice, productDescription, productName, brandName, productNameToolbar;
     private String productID = "";
     private FirebaseAuth firebaseAuth;
     View view;
@@ -64,8 +66,11 @@ public class ProductDetailsFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+
+        backtoproductbutton = view.findViewById(R.id.backtoproductpage);
         addtocartButton = (Button)view.findViewById(R.id.pd_add_to_cart_button);
         numberButton = (ElegantNumberButton)view.findViewById(R.id.number_btn);
+        productNameToolbar = view.findViewById(R.id.productnamedisplay);
         productImage = (ImageView)view.findViewById(R.id.detailImageView);
         productPrice = (TextView)view.findViewById(R.id.product_price_details);
         productDescription = (TextView)view.findViewById(R.id.productdetailsdescription);
@@ -81,7 +86,21 @@ public class ProductDetailsFragment extends Fragment {
             }
         });
 
+        backtoproductbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BackToProductPage();
+            }
+        });
+
         return view;
+    }
+
+    private void BackToProductPage() {
+        FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+        BrowseProductFragment fragproductsdetails = new BrowseProductFragment();
+        ft3.replace(R.id.frame_prod_detail, fragproductsdetails);
+        ft3.commit();
     }
 
     private void addtoCartList() {
@@ -134,6 +153,7 @@ public class ProductDetailsFragment extends Fragment {
                 if (dataSnapshot.exists())
                 {
                     Products products = dataSnapshot.getValue(Products.class);
+                    productNameToolbar.setText(products.getProductname());
                     productName.setText(products.getProductname());
                     productPrice.setText(products.getPrice());
                     productDescription.setText(products.getDescription());

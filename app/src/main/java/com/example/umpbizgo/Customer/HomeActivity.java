@@ -2,6 +2,7 @@ package com.example.umpbizgo.Customer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -15,11 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.umpbizgo.Fragments.LogOutFragment;
@@ -48,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView usernameview;
     private FirebaseAuth firebaseAuth;
     private RecyclerView recyclerView;
+    private CardView beverage2,clothes2,homeappliances2,groceries2,cannedfood2,electrical2,sports2,healthcare2,education2,others2;
     RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -58,18 +59,161 @@ public class HomeActivity extends AppCompatActivity {
         ///// Maintain the screen orientation portrait ///////
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        //////////Change the color of status text/////////
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
+        // Toolbar //
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Bottom Navigation Bar //
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottonnavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigation);
 
+        //Database//
         ProductReference = FirebaseDatabase.getInstance().getReference().child("Products");
         firebaseAuth = FirebaseAuth.getInstance();
         userID = firebaseAuth.getCurrentUser().getUid();
+
+        //Product by Category //
+        beverage2 = findViewById(R.id.beverages2);
+        clothes2 = findViewById(R.id.clothes2);
+        homeappliances2 = findViewById(R.id.homeappliances2);
+        groceries2 = findViewById(R.id.groceries2);
+        cannedfood2 = findViewById(R.id.cannedfood2);
+        electrical2 = findViewById(R.id.electrical2);
+        sports2 = findViewById(R.id.sportoutdoors2);
+        healthcare2 = findViewById(R.id.healthbeauty2);
+        education2 = findViewById(R.id.education2);
+        others2 = findViewById(R.id.others2);
+
+        beverage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Beverages");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        clothes2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Clothes");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        homeappliances2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Home Appliances");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        groceries2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Groceries");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        cannedfood2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Canned Food");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        electrical2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Electrical Appliances");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        sports2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Sports");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        healthcare2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Healthcare");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        education2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Education");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
+        others2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager ft = getSupportFragmentManager();
+                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                final BrowseProductByCategory fraghomeactivity = new BrowseProductByCategory();
+                Bundle bundle =new Bundle();
+                bundle.putString("category","Others");
+                fraghomeactivity.setArguments(bundle);
+                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+            }
+        });
+
         usernameview = findViewById(R.id.usernamedisplay);
         usernamedisplay(usernameview);
 
@@ -78,6 +222,7 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
+    //UserName Display//
     private void usernamedisplay(TextView usernameview) {
         DatabaseReference UserReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         UserReference.addValueEventListener(new ValueEventListener() {
@@ -94,6 +239,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    //Product Display //
     @Override
     protected void onStart() {
         super.onStart();
@@ -109,6 +255,19 @@ public class HomeActivity extends AppCompatActivity {
                         holder.textProductName.setText(model.getProductname());
                         holder.textProductPrice.setText("RM" + model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                FragmentManager ft = getSupportFragmentManager();
+                                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
+                                final ProductDetailsFragment fraghomeactivity = new ProductDetailsFragment();
+                                Bundle bundle =new Bundle();
+                                bundle.putString("pid",model.getPid());
+                                fraghomeactivity.setArguments(bundle);
+                                fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
+                            }
+                        });
                     }
 
                     @NonNull
@@ -123,6 +282,7 @@ public class HomeActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
+    //Bottom Navigation Bar //
     private BottomNavigationView.OnNavigationItemSelectedListener navigation =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -148,7 +308,7 @@ public class HomeActivity extends AppCompatActivity {
                             selectedFragment = new LogOutFragment();
                             break;
                         case R.id.myaccount:
-                            selectedFragment = new MyAccountBeforeLogin();
+                            selectedFragment = new MyAccountCustomerFragment();
                             break;
                     }
                     ///////////////Replacing by default fragment on home activity/////////////////
@@ -158,6 +318,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             };
 
+    // Toolbar //
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -185,6 +346,7 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    //LogOut//
     private void logout() {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, MainActivity.class));

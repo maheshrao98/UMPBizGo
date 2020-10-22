@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/frame_customer_account"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Customer.MyAccountCustomerFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".CustomerLoginRegister.CustomerRegisterActivity">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageButton
+                android:id="@+id/BacktoHomePageButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="16dp"
+                android:background="@android:color/transparent"
+                android:tint="@android:color/white"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/back_button_icon" />
+        </RelativeLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:elevation="40dp"
+            app:cardCornerRadius="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/cabin_medium"
+                android:gravity="center"
+                android:text="My Account"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:id="@+id/linearlayoutuserprofile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cardView"
+            app:layout_constraintVertical_bias="0.303">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_profile_image"
+                android:clickable="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_customer"
+                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_width="2dp"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/change_profile_picture_btn"
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="120dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/basicbutton"
+                android:text="Change Profile Picture"
+                android:fontFamily="@font/cabin_medium"
+                android:gravity="center"
+                android:textColor="#FFFFFF" />
+
+            <EditText
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableLeft="@drawable/name_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:elevation="20dp"
+                android:hint ="Name"
+                android:padding="16dp"
+                android:textColorHint="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/user_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/email_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:elevation="20dp"
+                android:hint="Email"
+                android:padding="16dp"
+                android:textColorHint="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/password_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:elevation="20dp"
+                android:hint="Password"
+                android:padding="16dp"
+                android:textColorHint="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/user_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/phone_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:elevation="20dp"
+                android:hint="Phone Number"
+                android:padding="16dp"
+                android:textColorHint="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/user_home_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/home_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:elevation="20dp"
+                android:hint="Home Address"
+                android:padding="16dp"
+                android:textColorHint="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/user_city_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/city_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:elevation="20dp"
+                android:hint="City Address"
+                android:padding="16dp"
+                android:textColorHint="@color/colorPrimaryDark" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/save_info_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:drawableEnd="@drawable/save_icon"
+            android:paddingEnd="5dp"
+            android:drawableTint="#FFFFFF"
+            android:elevation="8dp"
+            android:text="Save Changes"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

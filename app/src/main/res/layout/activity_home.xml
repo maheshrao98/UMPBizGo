@@ -32,7 +32,6 @@
                 android:id="@+id/toolbar_shadow"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:layout_below="@+id/toolbar"
                 android:background="@drawable/toolbar_shadow" />
 
 
@@ -59,12 +58,11 @@
                             android:fontFamily="sans-serif-medium"
                             android:text="Welcome"
                             android:textColor="#ffff"
-                            android:textSize="18dp" />
+                            android:textSize="18sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-
 
                             <ImageView
                                 android:layout_width="28dp"
@@ -86,7 +84,7 @@
                             android:id="@+id/usernamedisplay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-medium"
+                            android:fontFamily="@font/cabin_medium"
                             android:text="User Name"
                             android:textColor="#ffff"
                             android:textSize="24dp" />
@@ -470,6 +468,44 @@
                                     android:gravity="center"
                                     android:fontFamily="casual"
                                     android:text="Education"
+                                    android:textColor="@color/colorSecondaryLight"
+                                    android:textSize="12dp" />
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <!--Others-->
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/others2"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="2dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorAccent"
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentEnd="true"
+                                    android:src="@drawable/others" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_centerHorizontal="true"
+                                    android:lineSpacingExtra="-8dp"
+                                    android:gravity="center"
+                                    android:fontFamily="casual"
+                                    android:text="Others"
                                     android:textColor="@color/colorSecondaryLight"
                                     android:textSize="12dp" />
 

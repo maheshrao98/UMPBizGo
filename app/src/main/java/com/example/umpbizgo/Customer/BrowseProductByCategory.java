@@ -1,35 +1,25 @@
 package com.example.umpbizgo.Customer;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.example.umpbizgo.Fragments.LogOutFragment;
 import com.example.umpbizgo.Holder.ProductViewHolder;
-import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.Models.Products;
 import com.example.umpbizgo.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -40,29 +30,31 @@ import com.squareup.picasso.Picasso;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class BrowseProductFragment extends Fragment {
+public class BrowseProductByCategory extends Fragment {
     private DatabaseReference ProductReference;
-    private EditText searchText;
     private RecyclerView recyclerView;
+    private String category = "";
     RecyclerView.LayoutManager layoutManager;
-
     View view;
 
-    public BrowseProductFragment() {
+    public BrowseProductByCategory() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_browse_product, container, false);
+        view = inflater.inflate(R.layout.fragment_browse_product_by_category, container, false);
 
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            category = bundle.getString("category");
+        }
         //Toolbar
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.top_app_bar);
-        toolbar.setTitle("Products");
+        toolbar.setTitle(category);
         setHasOptionsMenu(true);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -71,13 +63,13 @@ public class BrowseProductFragment extends Fragment {
                     case R.id.cart:
                         FragmentTransaction ft3 = getFragmentManager().beginTransaction();
                         CartFragment fragbrowseproduct = new CartFragment();
-                        ft3.replace(R.id.frame_browse_product, fragbrowseproduct);
+                        ft3.replace(R.id.frame_browse_product_category, fragbrowseproduct);
                         ft3.commit();
                         break;
                     case R.id.logout:
                         FragmentTransaction ft2 = getFragmentManager().beginTransaction();
                         LogOutFragment fragbrowseproduct2 = new LogOutFragment();
-                        ft2.replace(R.id.frame_browse_product, fragbrowseproduct2);
+                        ft2.replace(R.id.frame_browse_product_category, fragbrowseproduct2);
                         ft2.commit();
                         break;
                 }
@@ -87,45 +79,19 @@ public class BrowseProductFragment extends Fragment {
 
         ProductReference = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        searchText=view.findViewById(R.id.search_text);
         recyclerView = view.findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        LoadData("");
-        searchText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(editable.toString() != null)
-                {
-                    LoadData(editable.toString());
-                }
-                else
-                {
-                    LoadData("");
-                }
-            }
-        });
+        LoadData();
 
         return view;
     }
 
 
-
-
-    private void LoadData(String product) {
-        Query query = ProductReference.orderByChild("productname").startAt(product).endAt(product+ "\uf8ff");
+    private void LoadData() {
+        Query query = ProductReference.orderByChild("category").equalTo(category);
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
                         .setQuery(query,Products.class)
@@ -148,7 +114,7 @@ public class BrowseProductFragment extends Fragment {
                                 Bundle bundle =new Bundle();
                                 bundle.putString("pid",model.getPid());
                                 fragbrowseproduct.setArguments(bundle);
-                                ft.replace(R.id.frame_browse_product, fragbrowseproduct);
+                                ft.replace(R.id.frame_browse_product_category, fragbrowseproduct);
                                 ft.commit();
                             }
                         });
@@ -165,8 +131,5 @@ public class BrowseProductFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
-
-
-
 
 }

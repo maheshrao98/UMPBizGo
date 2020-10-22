@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ public class CartFragment extends Fragment {
     View view;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-
+    private ImageButton backtohomebutton;
     private Button NextprocessButton;
     private TextView txtTotalamount;
     private FirebaseAuth firebaseAuth;
@@ -58,7 +59,7 @@ public class CartFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         firebaseAuth = FirebaseAuth.getInstance();
-
+        backtohomebutton = view.findViewById(R.id.backtohomeButton);
         NextprocessButton = (Button)view.findViewById(R.id.next_process_btn);
         txtTotalamount = (TextView)view.findViewById(R.id.total_price);
 
@@ -74,8 +75,23 @@ public class CartFragment extends Fragment {
                 ft.commit();
             }
         });
+
+        backtohomebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BackToHomePage();
+            }
+        });
         return view;
     }
+
+    private void BackToHomePage() {
+        FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+        BrowseProductFragment fragcart = new BrowseProductFragment();
+        ft3.replace(R.id.frame_cart, fragcart);
+        ft3.commit();
+    }
+
 
     @Override
     public void onStart() {

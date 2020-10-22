@@ -3,13 +3,11 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimaryDeep</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorAccentDarkShade</item>
         <item name="colorAccent">@color/colorAccentDarkShade</item>
         <item name="android:windowDisablePreview">true</item>
-    </style>
-
-    <style name="TopBarTheme" parent="Widget.MaterialComponents.ActionBar.Primary">
-
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <!-- ToolBar -->

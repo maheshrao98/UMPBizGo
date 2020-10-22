@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.umpbizgo.Fragments.OrderFragment;
 import com.example.umpbizgo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +40,7 @@ public class CompleteOrderFragment extends Fragment {
     private EditText nameEditText, phoneEditText, homeEditText, cityEditText;
     private Button confirmButton;
     private DatabaseReference UserReference;
+    private ImageButton backtoOrders;
     private String userID;
     private String totalAmount = "";
     View view;
@@ -61,6 +64,7 @@ public class CompleteOrderFragment extends Fragment {
             Toast.makeText(getActivity(), "Total Price = RM" + totalAmount, Toast.LENGTH_SHORT).show();
         }
 
+        backtoOrders = (ImageButton)view.findViewById(R.id.BacktoOrdersButton);
         confirmButton = (Button) view.findViewById(R.id.confirm_final_order_button);
         nameEditText = (EditText) view.findViewById(R.id.shipment_name);
         phoneEditText = (EditText) view.findViewById(R.id.shipment_phone_number);
@@ -71,6 +75,13 @@ public class CompleteOrderFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Check();
+            }
+        });
+
+        backtoOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BackToOrderPage();
             }
         });
 
@@ -90,6 +101,13 @@ public class CompleteOrderFragment extends Fragment {
                 });
 
         return view;
+    }
+
+    private void BackToOrderPage() {
+        FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+        OrderFragment fragordercomplete = new OrderFragment();
+        ft3.replace(R.id.frame_complete_order, fragordercomplete);
+        ft3.commit();
     }
 
     private void Check() {

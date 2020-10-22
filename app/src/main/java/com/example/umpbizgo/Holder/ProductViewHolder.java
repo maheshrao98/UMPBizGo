@@ -10,7 +10,7 @@ import com.example.umpbizgo.Interface.ItemClickListener;
 import com.example.umpbizgo.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView textProductName, textProductDescription, textProductPrice, textSellerName;
+    public TextView textProductName, textProductDescription, textProductPrice, textSellerName, productnamedisplay;
     public ImageView imageView;
     public ItemClickListener listener;
 
@@ -20,6 +20,8 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
         imageView =  (ImageView) itemView.findViewById(R.id.product_image);
         textProductName =  (TextView) itemView.findViewById(R.id.product_name);
+        textProductDescription = itemView.findViewById(R.id.product_description);
+        productnamedisplay = itemView.findViewById(R.id.productnamedisplay);
         textProductPrice =  (TextView) itemView.findViewById(R.id.product_price);
         textSellerName = (TextView) itemView.findViewById(R.id.seller_business_name);
     }
