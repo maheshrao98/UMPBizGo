@@ -68,7 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navigation);
 
         //Database//
-        ProductReference = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductReference = FirebaseDatabase.getInstance().getReference().child("Authorized Products");
         firebaseAuth = FirebaseAuth.getInstance();
         userID = firebaseAuth.getCurrentUser().getUid();
 
@@ -264,6 +264,8 @@ public class HomeActivity extends AppCompatActivity {
                                 final ProductDetailsFragment fraghomeactivity = new ProductDetailsFragment();
                                 Bundle bundle =new Bundle();
                                 bundle.putString("pid",model.getPid());
+                                bundle.putString("sellerID",model.getSellerid());
+                                bundle.putString("image",model.getImage());
                                 fraghomeactivity.setArguments(bundle);
                                 fragmentTransaction.add(R.id.frameLayout, fraghomeactivity).commit();
                             }

@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.umpbizgo.Fragments.LogOutFragment;
-import com.example.umpbizgo.Fragments.ViewOrderProductsFragment;
 import com.example.umpbizgo.Holder.OrderViewHolder;
 import com.example.umpbizgo.Models.Orders;
 import com.example.umpbizgo.R;
@@ -26,7 +25,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +35,7 @@ import com.google.firebase.database.ValueEventListener;
  * create an instance of this fragment.
  */
 public class CustomerViewOrdersFragment extends Fragment {
-    private DatabaseReference orderReference;
+    private DatabaseReference orderReference ;
     private String userID;
     private FirebaseAuth firebaseAuth;
     private RecyclerView recyclerView;
@@ -80,8 +81,7 @@ public class CustomerViewOrdersFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         userID = firebaseAuth.getCurrentUser().getUid();
-        orderReference = FirebaseDatabase.getInstance().getReference().child("Orders").child(userID);
-
+        orderReference = FirebaseDatabase.getInstance().getReference().child("Orders");
 
         recyclerView = view.findViewById(R.id.orders_list);
         recyclerView.setHasFixedSize(true);
@@ -95,9 +95,10 @@ public class CustomerViewOrdersFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        Query query = orderReference.orderByChild("uid").equalTo(userID);
         FirebaseRecyclerOptions<Orders> options =
                 new FirebaseRecyclerOptions.Builder<Orders>()
-                .setQuery(orderReference, Orders.class)
+                .setQuery(query, Orders.class)
                 .build();
 
         FirebaseRecyclerAdapter<Orders, OrderViewHolder> adapter =
@@ -106,28 +107,17 @@ public class CustomerViewOrdersFragment extends Fragment {
                     protected void onBindViewHolder(@NonNull OrderViewHolder holder, int position, @NonNull Orders model) {
                         holder.orderstatus.setText("Status:" + model.getState());
                         holder.orderID.setText( "#" + model.getOid());
-                        holder.userTotalPrice.setText("Total Price: RM" + model.getTotalAmount());
-                        holder.userDateTime.setText("Order at :" + model.getDate()+" "+ model.getTime() );
-                        holder.userShippingAddress.setText("Shipping Address:" + model.getHomeaddress()+ ", " +model.getCityaddress());
-
-                        holder.showorderproductbtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ViewOrderProductsFragment fragvieworders = new ViewOrderProductsFragment();
-                                Bundle bundle =new Bundle();
-                                bundle.putString("oid",model.getOid());
-                                fragvieworders.setArguments(bundle);
-                                ft.replace(R.id.frame_view_customer_order, fragvieworders);
-                                ft.commit();
-                            }
-                        });
+                        holder.productquantity.setText("Quantity : " + model.getQuantity());
+                        holder.productName.setText(model.getProductname());
+                        holder.userTotalPrice.setText(model.getPrice());
+                        holder.sellername.setText(model.getSellerbusinessname());
+                        Picasso.get().load(model.getProductImage()).into(holder.orderproductImage);
                     }
 
                     @NonNull
                     @Override
                     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.orders_layout, parent, false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_view_layout, parent, false);
                         OrderViewHolder holder = new OrderViewHolder(view);
                         return holder;
                     }

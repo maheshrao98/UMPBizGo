@@ -2,6 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/sellerhome"
+        android:title="Home"
+        android:icon="@drawable/ic__36_shop"
+        app:showAsAction="ifRoom"
+        >
+    </item>
 
     <item
         android:id="@+id/logout"
@@ -10,5 +17,6 @@
         app:showAsAction="ifRoom"
         >
     </item>
+
 
 </menu>

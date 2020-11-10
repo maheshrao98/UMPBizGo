@@ -5,7 +5,7 @@
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ViewOrderProductsFragment"
+    tools:context=".Customer.ViewOrderProductsFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/cabin_medium"
             android:gravity="center"
-            android:text="Order Products"
+            android:text="Confirm Product Details"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
@@ -50,17 +50,124 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/products_list"
+        <LinearLayout
+            android:id="@+id/linearlayoutshipment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
-            android:padding="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toTopOf="@id/relativeLayout"
+            app:layout_constraintVertical_bias="0.236">
+
+            <ImageView
+                android:id="@+id/od_product_image"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:padding="12dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:elevation="25dp"
+                android:src="@drawable/groceries"
+                />
+
+            <TextView
+                android:id="@+id/od_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableLeft="@drawable/name_icon"
+                android:elevation="20dp"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:text="Product Name"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="16dp"/>
+
+            <TextView
+                android:id="@+id/od_product_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/phone_icon"
+                android:elevation="20dp"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:text="Product Quantity"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="16dp"
+                />
+
+            <EditText
+                android:id="@+id/od_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:elevation="20dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/home_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:text="Product Price"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="16dp"
+                 />
+
+            <EditText
+                android:id="@+id/od_total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:elevation="12dp"
+                android:background="@drawable/skip_button"
+                android:drawableStart="@drawable/city_icon"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:text="Total Price"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="16dp"
+                 />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/od_confirm_product_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="48dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Confirm"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:drawableEnd="@drawable/rigt_arrow"
+            android:drawableTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

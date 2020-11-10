@@ -38,12 +38,14 @@ import java.util.HashMap;
  * create an instance of this fragment.
  */
 public class ProductDetailsFragment extends Fragment {
-    private Button addtocartButton;
+    private Button addtowishlistButton,  buynowbutton;
     private ImageView productImage;
     private ImageButton backtoproductbutton;
     private ElegantNumberButton numberButton;
     private TextView productPrice, productDescription, productName, brandName, productNameToolbar;
     private String productID = "";
+    private String sellerID = "";
+    private String ProductImage = "";
     private FirebaseAuth firebaseAuth;
     View view;
 
@@ -62,13 +64,16 @@ public class ProductDetailsFragment extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             productID = bundle.getString("pid");
+            sellerID = bundle.getString("sellerID");
+            ProductImage = bundle.getString("image");
         }
 
         firebaseAuth = FirebaseAuth.getInstance();
 
 
         backtoproductbutton = view.findViewById(R.id.backtoproductpage);
-        addtocartButton = (Button)view.findViewById(R.id.pd_add_to_cart_button);
+        addtowishlistButton = (Button)view.findViewById(R.id.pd_add_to_wishlist_button);
+        buynowbutton = view.findViewById(R.id.pd_buy_now_button);
         numberButton = (ElegantNumberButton)view.findViewById(R.id.number_btn);
         productNameToolbar = view.findViewById(R.id.productnamedisplay);
         productImage = (ImageView)view.findViewById(R.id.detailImageView);
@@ -79,10 +84,17 @@ public class ProductDetailsFragment extends Fragment {
 
 
         getProductDetails(productID);
-        addtocartButton.setOnClickListener(new View.OnClickListener() {
+        addtowishlistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addtoCartList();
+            }
+        });
+
+        buynowbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buynowproduct();
             }
         });
 
@@ -94,6 +106,22 @@ public class ProductDetailsFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void buynowproduct() {
+        FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+        ViewOrderProductsFragment fragproductsdetails = new ViewOrderProductsFragment();
+        Bundle bundle =new Bundle();
+        bundle.putString("pid",productID);
+        bundle.putString("sellerID",sellerID);
+        bundle.putString("image",ProductImage);
+        bundle.putString("productname", productName.getText().toString());
+        bundle.putString("sellerbusinessname",brandName.getText().toString());
+        bundle.putString("price",productPrice.getText().toString());
+        bundle.putString("quantity",numberButton.getNumber());
+        fragproductsdetails.setArguments(bundle);
+        ft3.replace(R.id.frame_prod_detail, fragproductsdetails);
+        ft3.commit();
     }
 
     private void BackToProductPage() {
@@ -113,7 +141,7 @@ public class ProductDetailsFragment extends Fragment {
         SimpleDateFormat currenttimeformat = new SimpleDateFormat("HH:mm:ss a");
         saveCurrenttime = currenttimeformat.format(callfordate.getTime());
 
-        final DatabaseReference cartListReference = FirebaseDatabase.getInstance().getReference().child("Cart List");
+        final DatabaseReference cartListReference = FirebaseDatabase.getInstance().getReference().child("Wish List");
 
         final HashMap<String, Object> cartMap = new HashMap<>();
         cartMap.put("pid", productID);
@@ -123,15 +151,17 @@ public class ProductDetailsFragment extends Fragment {
         cartMap.put("time", saveCurrenttime);
         cartMap.put("quantity", numberButton.getNumber());
         cartMap.put("sellerbusinessname", brandName.getText().toString());
+        cartMap.put("sellerID", sellerID);
+        cartMap.put("productImage", ProductImage);
 
-        cartListReference.child("User Cart View").child(firebaseAuth.getCurrentUser().getUid())
-                .child("Products").child(productID)
+        cartListReference.child(firebaseAuth.getCurrentUser().getUid())
+                .child(productID)
                 .updateChildren(cartMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getActivity(), " Added To Cart List", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), " Added To WishList", Toast.LENGTH_SHORT).show();
 
                             FragmentTransaction ft = getFragmentManager().beginTransaction();
                             BrowseProductFragment fragdetailsproduct = new BrowseProductFragment();
@@ -145,7 +175,7 @@ public class ProductDetailsFragment extends Fragment {
     }
 
     private void getProductDetails(String productID) {
-        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Authorized Products");
 
         productRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override

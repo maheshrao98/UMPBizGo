@@ -2,6 +2,7 @@ package com.example.umpbizgo.Holder;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,18 +13,26 @@ import com.example.umpbizgo.R;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     public ItemClickListener listener;
-    public TextView orderstatus, orderID, userTotalPrice, userShippingAddress, userDateTime;
-    public Button showorderproductbtn;
+    public TextView orderstatus, sellerproductquantity, orderID, sellerorderID, userTotalPrice, userShippingAddress, userDateTime, sellername, productName, productquantity, sellerorderproductname, userName;
+    public ImageView orderproductImage, sellerorderProductImage;
 
 
     public OrderViewHolder(@NonNull View itemView) {
         super(itemView);
         orderstatus = itemView.findViewById(R.id.order_status);
         orderID = itemView.findViewById(R.id.order_id);
-        userTotalPrice = itemView.findViewById(R.id.order_total_price);
-        userDateTime = itemView.findViewById(R.id.order_date_time);
-        userShippingAddress = itemView.findViewById(R.id.order_address_city);
-        showorderproductbtn = itemView.findViewById(R.id.show_all_order_products_btn);
+        sellerorderID = itemView.findViewById(R.id.seller_order_id);
+        userName = itemView.findViewById(R.id.seller_customer_name);
+        userTotalPrice = itemView.findViewById(R.id.order_product_price);
+        userDateTime = itemView.findViewById(R.id.seller_order_datetime);
+        userShippingAddress = itemView.findViewById(R.id.seller_customer_address);
+        sellername = itemView.findViewById(R.id.order_seller_business);
+        orderproductImage = (ImageView)itemView.findViewById(R.id.order_product_image);
+        productName = itemView.findViewById(R.id.order_product_name);
+        productquantity = itemView.findViewById(R.id.order_product_quantity);
+        sellerorderProductImage = itemView.findViewById(R.id.seller_order_product_image);
+        sellerorderproductname =itemView.findViewById(R.id.seller_order_product_name);
+        sellerproductquantity = itemView.findViewById(R.id.seller_order_product_quantity);
     }
 
     @Override

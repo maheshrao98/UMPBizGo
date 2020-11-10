@@ -65,7 +65,8 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-            app:layout_constraintVertical_bias="0.527" />
+            app:layout_constraintVertical_bias="0.527"
+            android:focusable="true" />
 
         <RelativeLayout
             android:id="@+id/container2"
@@ -180,6 +181,8 @@
                 android:layout_height="35dp"
                 android:layout_below="@id/productdetailsdescription"
                 android:layout_marginTop="6dp"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
                 android:layout_toRightOf="@+id/productquantity"
                 android:elevation="6dp"
                 app:backGroundColor="@color/colorAccentLight"
@@ -189,14 +192,30 @@
             </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
             <Button
-                android:id="@+id/pd_add_to_cart_button"
-                android:layout_width="match_parent"
+                android:id="@+id/pd_add_to_wishlist_button"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/number_btn"
                 android:layout_margin="15dp"
                 android:background="@drawable/basicbutton"
-                android:text="Add To Cart"
+                android:backgroundTint="#2D023C"
+                android:text="Add To Wishlist"
                 android:textColor="@android:color/white"
+                android:textSize="16sp">
+            </Button>
+
+            <Button
+                android:id="@+id/pd_buy_now_button"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/number_btn"
+                android:layout_margin="15dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/basicbutton"
+
+                android:text="Buy Now"
+                android:elevation="20dp"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp">
             </Button>
 

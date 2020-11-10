@@ -21,6 +21,19 @@
                 layout="@layout/toolbar">
             </include>
 
+            <EditText
+            android:layout_width="match_parent"
+            android:hint="Search Products Here"
+            android:background="@drawable/skip_button"
+            android:drawableEnd="@drawable/search"
+            android:id="@+id/search_text_category"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:queryHint="Search"
+            android:layout_height="?actionBarSize" >
+            </EditText>
+
 
             <ScrollView
                 android:layout_width="match_parent"

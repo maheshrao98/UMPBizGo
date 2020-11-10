@@ -14,10 +14,11 @@ import android.widget.LinearLayout;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.umpbizgo.Adapters.PlateAdapter;
+import com.example.umpbizgo.Admin.AdminLoginActivity;
 import com.example.umpbizgo.Customer.HomeActivity;
 import com.example.umpbizgo.CustomerLoginRegister.CustomerLoginActivity;
 import com.example.umpbizgo.Models.PlateModel;
-import com.example.umpbizgo.SellerLoginRegister.SellerLoginActivity;
+import com.example.umpbizgo.Seller.Registration.SellerLoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<PlateModel> plateModelList;
     private PlateAdapter plateAdapter;
-    private LinearLayout customerContinueBtn,sellerContinueBtn;
+    private LinearLayout customerContinueBtn,sellerContinueBtn,adminContinue;
 
 
     @Override
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         customerContinueBtn = (LinearLayout) findViewById(R.id.linearlayoutcustomer) ;
         sellerContinueBtn = (LinearLayout) findViewById(R.id.linearlayoutseller) ;
+        adminContinue = findViewById(R.id.linearlayoutadmin);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -88,6 +90,17 @@ public class MainActivity extends AppCompatActivity {
                 Animatoo.animateSlideDown(MainActivity.this);
             }
         });
+
+        ////////////continue with email/////////////////
+        adminContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AdminLoginActivity.class);
+                startActivity(intent);
+                Animatoo.animateSlideDown(MainActivity.this);
+            }
+        });
+
     }
 
     public void autoScroll(){

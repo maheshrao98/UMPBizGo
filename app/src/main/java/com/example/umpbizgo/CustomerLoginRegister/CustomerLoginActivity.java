@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.umpbizgo.Customer.HomeActivity;
 import com.example.umpbizgo.MainActivity;
+import com.example.umpbizgo.Models.Customer;
 import com.example.umpbizgo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,9 +41,7 @@ public class CustomerLoginActivity extends AppCompatActivity {
         passwordinput = findViewById(R.id.emailloginpasswordinput);
         emailloginbtn = findViewById(R.id.emailloginbutton);
 
-
         mAuth = FirebaseAuth.getInstance();
-
 
 
         progressBar = findViewById(R.id.progressBar);

@@ -130,9 +130,6 @@ public class MyAccountCustomerFragment extends Fragment {
                startActivityForResult(intent,CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
             }
         }));
-
-
-
         return view;
     }
 
@@ -150,7 +147,7 @@ public class MyAccountCustomerFragment extends Fragment {
         userInfo.put("homeaddress", homeaddressText.getText().toString());
         userInfo.put("cityaddress", cityAddressText.getText().toString());
 
-        UserReference.child(userID).updateChildren(userInfo);
+        UserReference.updateChildren(userInfo);
         Intent intent = new Intent(getActivity(), HomeActivity.class);
         startActivity(intent);
         Toast.makeText(getActivity(),"Profile Information Updated Successfully.", Toast.LENGTH_SHORT).show();
@@ -230,7 +227,7 @@ public class MyAccountCustomerFragment extends Fragment {
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getActivity(), "Product Image Uploaded succesfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "User Profile Image Uploaded succesfully.", Toast.LENGTH_SHORT).show();
                         Task<Uri> UriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                             @Override
                             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -246,7 +243,7 @@ public class MyAccountCustomerFragment extends Fragment {
                                 if (task.isSuccessful()) {
                                     downloadImageUrl = task.getResult().toString();
                                     Toast.makeText(getActivity(), "User Profile Image Url Uploaded Successfully", Toast.LENGTH_SHORT).show();
-
+                                    progressDialog.dismiss();
                                     SaveUserInformationToDatabase();
                                 }
                             }

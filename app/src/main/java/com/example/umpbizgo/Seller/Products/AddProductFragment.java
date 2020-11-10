@@ -1,25 +1,32 @@
-package com.example.umpbizgo.Seller;
+package com.example.umpbizgo.Seller.Products;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.umpbizgo.Fragments.LogOutFragment;
 import com.example.umpbizgo.R;
+import com.example.umpbizgo.Seller.SellerHomeActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,14 +55,15 @@ import static android.app.Activity.RESULT_OK;
  */
 public class AddProductFragment extends Fragment {
 
-    private String categoryname, Description, Price, ProductName, SaveCurrentDate, SaveCurrentTime;
+    private String  Description, Price, ProductName, Category, SaveCurrentDate, SaveCurrentTime;
     private Button AddNewProductButton;
     private EditText InputProductName, InputProductDescription,InputProductPrice;
+    private TextView InputProductCategory;
     private ImageView InputProductImage;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
     private String productKey, downloadImageUrl;
-    private StorageReference ProductImageRef;
+    private StorageReference ProductImageRef, filePath;
     private DatabaseReference ProductRef, SellerReference;
     private ProgressDialog loadingbar;
     private String businessName, sellerID;
@@ -71,12 +79,31 @@ public class AddProductFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_add_product, container, false);
 
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            categoryname = bundle.getString("category");
-        }
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.top_app_bar_seller);
+        toolbar.setTitle("Add New Product");
+        setHasOptionsMenu(true);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.sellerhome:
+                        Intent intent = new Intent(getActivity(), SellerHomeActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.logout:
+                        FragmentTransaction ft2 = getFragmentManager().beginTransaction();
+                        LogOutFragment fragaddproduct = new LogOutFragment();
+                        ft2.replace(R.id.frame_add_product, fragaddproduct);
+                        ft2.commit();
+                        break;
+                }
+                return false;
+            }
+        });
+
         ProductImageRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductRef = FirebaseDatabase.getInstance().getReference().child("Authorized Products");
         SellerReference = FirebaseDatabase.getInstance().getReference().child("Sellers");
 
         AddNewProductButton = (Button) view.findViewById(R.id.add_new_product);
@@ -84,12 +111,20 @@ public class AddProductFragment extends Fragment {
         InputProductDescription = (EditText)view.findViewById(R.id.product_description);
         InputProductPrice = (EditText) view.findViewById(R.id.product_price);
         InputProductImage = (ImageView)view.findViewById(R.id.select_product_image);
+        InputProductCategory = view.findViewById(R.id.product_category);
         loadingbar = new ProgressDialog(getActivity());
 
         InputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OpenGallery();
+            }
+        });
+
+        InputProductCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddCategoryDialog();
             }
         });
 
@@ -121,14 +156,28 @@ public class AddProductFragment extends Fragment {
         return view;
     }
 
+    private void AddCategoryDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Update Product Category")
+                .setItems(ProductCategoryConstants.category, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String categorystatus = ProductCategoryConstants.category[i];
+                        InputProductCategory.setText(categorystatus);
+                    }
+                })
+                .show();
+    }
+
     private void ValidateProductData() {
         Description = InputProductDescription.getText().toString();
         Price = InputProductPrice.getText().toString();
         ProductName = InputProductName.getText().toString();
+        Category = InputProductCategory.getText().toString();
 
         if (ImageUri == null)
         {
-            Toast.makeText(getActivity(), "Product Image is working",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Product Image is empty",Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(Description))
         {
@@ -141,6 +190,10 @@ public class AddProductFragment extends Fragment {
         else if (TextUtils.isEmpty(ProductName))
         {
             Toast.makeText(getActivity(), "Please write product name",Toast.LENGTH_SHORT).show();
+        }
+        else if(TextUtils.isEmpty(Category))
+        {
+            Toast.makeText(getActivity(), "Please write category",Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -162,9 +215,9 @@ public class AddProductFragment extends Fragment {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         SaveCurrentTime = currentTime.format(calendar.getTime());
 
-        productKey = SaveCurrentDate + SaveCurrentTime;
+        productKey = ProductRef.push().getKey();
 
-        final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + productKey + ".jpg");
+        filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + productKey + ".jpg");
 
         final UploadTask uploadTask = filePath.putFile(ImageUri);
 
@@ -215,7 +268,7 @@ public class AddProductFragment extends Fragment {
         productMap.put("time",SaveCurrentTime);
         productMap.put("description",Description);
         productMap.put("image",downloadImageUrl);
-        productMap.put("category",categoryname);
+        productMap.put("category",Category);
         productMap.put("price", Price);
         productMap.put("productname", ProductName);
 
@@ -229,10 +282,8 @@ public class AddProductFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
-                            FragmentTransaction ft = getFragmentManager().beginTransaction();
-                            PickCategoryFragment fragaddproduct = new PickCategoryFragment();
-                            ft.replace(R.id.frame_pick_category, fragaddproduct);
-                            ft.commit();
+                            Intent intent = new Intent(getActivity(), SellerHomeActivity.class);
+                            startActivity(intent);
 
                             loadingbar.dismiss();
                             Toast.makeText(getActivity(), "Product is added successfully.",Toast.LENGTH_SHORT).show();

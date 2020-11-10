@@ -99,8 +99,7 @@ public class CartFragment extends Fragment {
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
-                .setQuery(cartListRef.child("User Cart View")
-                .child(firebaseAuth.getCurrentUser().getUid())
+                .setQuery(cartListRef.child(firebaseAuth.getCurrentUser().getUid())
                 .child("Products"), Cart.class)
                 .build();
 

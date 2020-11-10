@@ -14,9 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.umpbizgo.Fragments.OrderFragment;
 import com.example.umpbizgo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,9 +39,9 @@ import java.util.HashMap;
 public class CompleteOrderFragment extends Fragment {
     private EditText nameEditText, phoneEditText, homeEditText, cityEditText;
     private Button confirmButton;
-    private DatabaseReference UserReference;
+    private DatabaseReference UserReference, OrderReference;
     private ImageButton backtoOrders;
-    private String userID;
+    private String userID,ProductID, productName, productprice,sellerID, sellerbusinessname, quantity, imageUrl;;
     private String totalAmount = "";
     View view;
 
@@ -57,11 +57,18 @@ public class CompleteOrderFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_compete_order, container, false);
 
         UserReference = FirebaseDatabase.getInstance().getReference().child("Users");
+        OrderReference = FirebaseDatabase.getInstance().getReference().child("Orders");
 
         Bundle bundle = this.getArguments();
         if(bundle!= null){
-            totalAmount = bundle.getString("Total Price");
-            Toast.makeText(getActivity(), "Total Price = RM" + totalAmount, Toast.LENGTH_SHORT).show();
+            ProductID = bundle.getString("pid");
+            productName = bundle.getString("productname");
+            productprice = bundle.getString("price");
+            quantity = bundle.getString("quantity");
+            sellerbusinessname = bundle.getString("sellerbusinessname");
+            imageUrl = bundle.getString("image");
+            sellerID = bundle.getString("sellerID");
+            totalAmount = bundle.getString("totalprice");
         }
 
         backtoOrders = (ImageButton)view.findViewById(R.id.BacktoOrdersButton);
@@ -100,12 +107,13 @@ public class CompleteOrderFragment extends Fragment {
                     }
                 });
 
+
         return view;
     }
 
     private void BackToOrderPage() {
         FragmentTransaction ft3 = getFragmentManager().beginTransaction();
-        OrderFragment fragordercomplete = new OrderFragment();
+        CustomerViewOrdersFragment fragordercomplete = new CustomerViewOrdersFragment();
         ft3.replace(R.id.frame_complete_order, fragordercomplete);
         ft3.commit();
     }
@@ -142,9 +150,9 @@ public class CompleteOrderFragment extends Fragment {
         SimpleDateFormat currenttimeformat = new SimpleDateFormat("HH:mm:ss a");
         saveCurrenttime = currenttimeformat.format(callfordate.getTime());
 
-        orderKey = saveCurrentDate + saveCurrenttime;
+        DatabaseReference orderReference = FirebaseDatabase.getInstance().getReference().child("Orders");
 
-        DatabaseReference orderReference = FirebaseDatabase.getInstance().getReference().child("Orders").child(userID);
+        orderKey = orderReference.push().getKey();
 
         HashMap<String, Object> orderMap = new HashMap<>();
         orderMap.put("oid",orderKey);
@@ -154,21 +162,25 @@ public class CompleteOrderFragment extends Fragment {
         orderMap.put("phonenumber", phoneEditText.getText().toString());
         orderMap.put("homeaddress", homeEditText.getText().toString());
         orderMap.put("cityaddress", cityEditText.getText().toString());
+        orderMap.put("pid",ProductID);
+        orderMap.put("productname", productName);
+        orderMap.put("price",productprice);
+        orderMap.put("quantity",quantity);
+        orderMap.put("sellerID",sellerID);
+        orderMap.put("sellerbusinessname", sellerbusinessname);
+        orderMap.put("productImage",imageUrl);
+
 
         orderMap.put("date", saveCurrentDate);
         orderMap.put("time", saveCurrenttime);
         orderMap.put("state","Not Shipped");
 
+
+
         orderReference.child(orderKey).updateChildren(orderMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    FirebaseDatabase.getInstance().getReference().child("Cart List").child("User Cart View").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Products")
-                            .addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    FirebaseDatabase.getInstance().getReference().child("Orders").child(userID).child(orderKey).child("Order Products").setValue(snapshot.getValue());
-                                    FirebaseDatabase.getInstance().getReference().child("Cart List").child("User Cart View").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                                     Toast.makeText(getActivity(),"Your final order has been placed",Toast.LENGTH_SHORT).show();
 
                                     FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -177,14 +189,7 @@ public class CompleteOrderFragment extends Fragment {
                                     ft.replace(R.id.frame_complete_order, fragcompleteorder);
                                     ft.commit();
                                 }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
                 }
-            }
         });
     }
 }

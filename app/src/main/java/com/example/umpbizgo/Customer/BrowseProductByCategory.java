@@ -3,6 +3,7 @@ package com.example.umpbizgo.Customer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.example.umpbizgo.Fragments.LogOutFragment;
 import com.example.umpbizgo.Holder.ProductViewHolder;
@@ -20,6 +22,9 @@ import com.example.umpbizgo.Models.Products;
 import com.example.umpbizgo.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -32,7 +37,9 @@ import com.squareup.picasso.Picasso;
  */
 public class BrowseProductByCategory extends Fragment {
     private DatabaseReference ProductReference;
+    private ProductViewHolder adapter;
     private RecyclerView recyclerView;
+    private EditText SearchText;
     private String category = "";
     RecyclerView.LayoutManager layoutManager;
     View view;
@@ -77,7 +84,8 @@ public class BrowseProductByCategory extends Fragment {
             }
         });
 
-        ProductReference = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductReference = FirebaseDatabase.getInstance().getReference().child("Authorized Products");
+        SearchText = view.findViewById(R.id.search_text_category);
 
         recyclerView = view.findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -92,6 +100,7 @@ public class BrowseProductByCategory extends Fragment {
 
     private void LoadData() {
         Query query = ProductReference.orderByChild("category").equalTo(category);
+
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
                         .setQuery(query,Products.class)
@@ -113,6 +122,8 @@ public class BrowseProductByCategory extends Fragment {
                                 ProductDetailsFragment fragbrowseproduct = new ProductDetailsFragment();
                                 Bundle bundle =new Bundle();
                                 bundle.putString("pid",model.getPid());
+                                bundle.putString("sellerID",model.getSellerid());
+                                bundle.putString("image",model.getImage());
                                 fragbrowseproduct.setArguments(bundle);
                                 ft.replace(R.id.frame_browse_product_category, fragbrowseproduct);
                                 ft.commit();

@@ -1,4 +1,4 @@
-package com.example.umpbizgo.SellerLoginRegister;
+package com.example.umpbizgo.Seller.Registration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.example.umpbizgo.Customer.UserProfileActivity;
 import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.R;
 import com.example.umpbizgo.Seller.SellerHomeActivity;

@@ -10,7 +10,7 @@ public class Products
     private String pid;
     private String date;
     private String time;
-
+    private String imagestorageurl;
     private String sellerbusinessname;
     private String sellerid;
 
@@ -28,7 +28,7 @@ public class Products
         this.sellerid = sellerid;
     }
 
-    public Products(String productname, String description, String price, String image, String category, String pid, String date, String time, String sellerbusinessname, String sellerid) {
+    public Products(String productname, String description, String price, String image, String category, String pid, String date, String time, String sellerbusinessname, String sellerid, String imagestorageurl) {
         this.productname = productname;
         this.description = description;
         this.price = price;
@@ -39,6 +39,15 @@ public class Products
         this.time = time;
         this.sellerbusinessname = sellerbusinessname;
         this.sellerid = sellerid;
+        this.imagestorageurl = imagestorageurl;
+    }
+
+    public String getImagestorageurl() {
+        return imagestorageurl;
+    }
+
+    public void setImagestorageurl(String imagestorageurl) {
+        this.imagestorageurl = imagestorageurl;
     }
 
     public String getProductname() {

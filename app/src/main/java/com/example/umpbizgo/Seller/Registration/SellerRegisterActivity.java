@@ -1,4 +1,4 @@
-package com.example.umpbizgo.SellerLoginRegister;
+package com.example.umpbizgo.Seller.Registration;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

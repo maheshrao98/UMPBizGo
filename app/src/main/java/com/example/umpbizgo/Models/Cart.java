@@ -1,17 +1,26 @@
 package com.example.umpbizgo.Models;
 
-public class Cart {private String pid, productname, price, quantity, discount ;
+public class Cart {private String pid, productname, price, quantity, discount , image;
 
     public Cart() {
 
     }
 
-    public Cart(String pid, String productname, String price, String quantity, String discount) {
+    public Cart(String pid, String productname, String price, String quantity, String discount, String image) {
         this.pid = pid;
         this.productname = productname;
         this.price = price;
         this.quantity = quantity;
         this.discount = discount;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getPid() {

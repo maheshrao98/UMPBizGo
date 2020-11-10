@@ -85,7 +85,7 @@ public class BrowseProductFragment extends Fragment {
             }
         });
 
-        ProductReference = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductReference = FirebaseDatabase.getInstance().getReference().child("Authorized Products");
 
         searchText=view.findViewById(R.id.search_text);
         recyclerView = view.findViewById(R.id.recycler_menu);
@@ -147,6 +147,8 @@ public class BrowseProductFragment extends Fragment {
                                 ProductDetailsFragment fragbrowseproduct = new ProductDetailsFragment();
                                 Bundle bundle =new Bundle();
                                 bundle.putString("pid",model.getPid());
+                                bundle.putString("sellerID",model.getSellerid());
+                                bundle.putString("image",model.getImage());
                                 fragbrowseproduct.setArguments(bundle);
                                 ft.replace(R.id.frame_browse_product, fragbrowseproduct);
                                 ft.commit();
