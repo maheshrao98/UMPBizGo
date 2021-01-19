@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.umpbizgo.Customer.Order.ViewShippedOrdersFragment;
 import com.example.umpbizgo.Models.Customer;
 import com.example.umpbizgo.R;
 import com.google.android.gms.tasks.Continuation;
@@ -134,8 +135,10 @@ public class MyAccountCustomerFragment extends Fragment {
     }
 
     private void BacktoHomePage() {
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
-        startActivity(intent);
+        FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+        CustomerUserPageFragment fragorderproductview = new CustomerUserPageFragment();
+        ft3.replace(R.id.frame_customer_account, fragorderproductview);
+        ft3.commit();
     }
 
     private void UpdateOnlyUserInfo() {
@@ -275,7 +278,7 @@ public class MyAccountCustomerFragment extends Fragment {
                     else
                     {
                         Customer customer = snapshot.getValue(Customer.class);
-                        profileImageView.setImageResource(R.drawable.ic_customer);
+                        profileImageView.setImageResource(R.drawable.ic_landscape);
                         nameText.setText(customer.getUsername());
                         emailText.setText(customer.getEmail());
                         phoneText.setText(customer.getPhone());

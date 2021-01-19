@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.umpbizgo.Customer.Order.CompleteOrderFragment;
 import com.example.umpbizgo.Holder.CartViewHolder;
 import com.example.umpbizgo.Models.Cart;
 import com.example.umpbizgo.R;
@@ -28,6 +28,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,8 +44,10 @@ public class CartFragment extends Fragment {
     private Button NextprocessButton;
     private TextView txtTotalamount;
     private FirebaseAuth firebaseAuth;
+    private String ProductID;
+    private DatabaseReference cartlistref;
 
-    private int overallTotalPrice=0;
+    private double overallTotalPrice=0;
     public CartFragment() {
         // Required empty public constructor
     }
@@ -60,21 +64,14 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         firebaseAuth = FirebaseAuth.getInstance();
         backtohomebutton = view.findViewById(R.id.backtohomeButton);
-        NextprocessButton = (Button)view.findViewById(R.id.next_process_btn);
         txtTotalamount = (TextView)view.findViewById(R.id.total_price);
 
-        NextprocessButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                CompleteOrderFragment fragcart = new CompleteOrderFragment();
-                Bundle bundle =new Bundle();
-                bundle.putString("Total Price",String.valueOf(overallTotalPrice));
-                fragcart.setArguments(bundle);
-                ft.replace(R.id.frame_cart, fragcart);
-                ft.commit();
-            }
-        });
+        cartlistref = FirebaseDatabase.getInstance().getReference().child("Wish List");
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            ProductID = bundle.getString("pid");
+        }
 
         backtohomebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,32 +93,32 @@ public class CartFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Wish List").child(firebaseAuth.getCurrentUser().getUid());
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
-                .setQuery(cartListRef.child(firebaseAuth.getCurrentUser().getUid())
-                .child("Products"), Cart.class)
+                .setQuery(cartListRef, Cart.class)
                 .build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
                 = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
-                holder.txtProductQuantity.setText("Ouantity =" + model.getQuantity());
+                Picasso.get().load(model.getImage()).into(holder.ProductImage);
+                holder.txtProductQuantity.setText("Quantity =" + model.getQuantity());
                 holder.txtProductPrice.setText("Price = RM " + model.getPrice());
                 holder.txtProductName.setText(model.getProductname());
 
-                int oneTypeProductPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
+                double oneTypeProductPrice = ((Double.valueOf(model.getPrice()))) * Double.valueOf(model.getQuantity());
                 overallTotalPrice = overallTotalPrice + oneTypeProductPrice;
 
-                txtTotalamount.setText("Total Price = RM" + String.valueOf(overallTotalPrice));
+                txtTotalamount.setText("Total Price = RM" + String.format("%.2f",overallTotalPrice));
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         CharSequence options[] = new CharSequence[]
                                 {
-                                        "Edit",
+                                        "View",
                                         "Remove"
                                 };
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -142,10 +139,8 @@ public class CartFragment extends Fragment {
                                 }
                                 if(i==1)
                                 {
-                                    cartListRef.child("User Cart View")
-                                            .child(firebaseAuth.getCurrentUser().getUid())
-                                            .child("Products")
-                                            .child(model.getPid())
+                                    cartListRef
+                                            .child(model.getCid())
                                             .removeValue()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override

@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="90dp"
-                app:layout_constraintBottom_toBottomOf="@id/next_process_btn"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -65,25 +65,6 @@
                 app:layout_constraintVertical_bias="1.0">
 
             </androidx.recyclerview.widget.RecyclerView>
-
-            <Button
-                android:id="@+id/next_process_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="48dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/colorPrimaryDark"
-                android:text="Next"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:drawableEnd="@drawable/rigt_arrow"
-                android:drawableTint="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/total_price"
@@ -94,7 +75,7 @@
                 android:fontFamily="casual"
                 android:gravity="left"
                 android:text="Total Price"
-                android:textColor="@color/colorAccentDarkShade"
+                android:textColor="@color/colorSecondaryLight"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@id/cart_list"
                 app:layout_constraintEnd_toEndOf="@id/cart_list"

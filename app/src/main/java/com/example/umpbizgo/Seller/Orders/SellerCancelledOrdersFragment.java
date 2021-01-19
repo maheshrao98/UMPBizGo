@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import com.example.umpbizgo.Holder.OrderViewHolder;
 import com.example.umpbizgo.Models.Orders;
 import com.example.umpbizgo.R;
-import com.example.umpbizgo.Seller.Orders.EditCancelledOrdersFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -49,7 +47,6 @@ public class SellerCancelledOrdersFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         sellerID = firebaseAuth.getCurrentUser().getUid();
         orderReference = FirebaseDatabase.getInstance().getReference().child("Cancelled Orders");
-
 
         recyclerView = view.findViewById(R.id.recycler_seller_cancelled_order);
         recyclerView.setHasFixedSize(true);

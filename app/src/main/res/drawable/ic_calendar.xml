@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="497"
+    android:viewportHeight="497">
+  <path
+      android:pathData="m481,0h-22.5l-45,150 75,-60v-82.5c0,-4.142 -3.358,-7.5 -7.5,-7.5z"
+      android:fillColor="#c44e46"/>
+  <path
+      android:pathData="m8.5,7.5v82.5l450,195v-285h-442.5c-4.142,0 -7.5,3.358 -7.5,7.5zM83.5,60c-8.284,0 -15,-6.716 -15,-15s6.716,-15 15,-15 15,6.716 15,15 -6.716,15 -15,15zM413.5,60c-8.284,0 -15,-6.716 -15,-15s6.716,-15 15,-15 15,6.716 15,15 -6.716,15 -15,15z"
+      android:fillColor="#ff4c3b"/>
+  <path
+      android:pathData="m458.5,90 l-45,135 75,-90v-45z"
+      android:fillColor="#fff9d6"/>
+  <path
+      android:pathData="m8.5,90v45l450,165v-210z"
+      android:fillColor="#fff"/>
+  <path
+      android:pathData="m481,497h-22.5l-45,-60 75,30v22.5c0,4.142 -3.358,7.5 -7.5,7.5z"
+      android:fillColor="#ffc649"/>
+  <path
+      android:pathData="m458.5,497v-264l-450,234v22.5c0,4.142 3.358,7.5 7.5,7.5z"
+      android:fillColor="#ffe341"/>
+  <path
+      android:pathData="m488.5,467h-30l-45,-60 75,30z"
+      android:fillColor="#ffe341"/>
+  <path
+      android:pathData="m458.5,467v-264l-450,234v30z"
+      android:fillColor="#fff1a0"/>
+  <path
+      android:pathData="m338.5,173 l120,264h30v-264z"
+      android:fillColor="#ffa951"/>
+  <path
+      android:pathData="m458.5,437v-264h-204v264z"
+      android:fillColor="#ffc649"/>
+  <path
+      android:pathData="m284.5,233 l12.43,186.43 174,-174z"
+      android:fillColor="#ffe341"/>
+  <path
+      android:pathData="m473.5,120 l-45,45v98c16.57,0 31.57,-6.72 42.43,-17.57 10.85,-10.86 17.57,-25.86 17.57,-42.43v-68z"
+      android:fillColor="#fff1a0"/>
+  <path
+      android:pathData="m458.5,135v98c0,16.569 -13.431,30 -30,30h-114v114c0,16.57 -6.72,31.57 -17.57,42.43 -10.86,10.85 -25.86,17.57 -42.43,17.57h-246v-302l15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15 15,15 15,-15z"
+      android:fillColor="#fff9d6"/>
+</vector>

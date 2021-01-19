@@ -14,7 +14,6 @@ import com.example.umpbizgo.R;
 public class AdminProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView textProductName, textProductDescription, textProductPrice, textSellerName, productnamedisplay;
     public ImageView imageView;
-    public ImageButton approveButton, disapprovebutton;
     public ItemClickListener listener;
     public AdminProductViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -22,8 +21,6 @@ public class AdminProductViewHolder extends RecyclerView.ViewHolder implements V
         textProductName =  (TextView) itemView.findViewById(R.id.aproduct_name);
         textProductPrice =  (TextView) itemView.findViewById(R.id.aproduct_price);
         textSellerName = (TextView) itemView.findViewById(R.id.aseller_business_name);
-        approveButton = itemView.findViewById(R.id.imageButtonapprove);
-        disapprovebutton = itemView.findViewById(R.id.imageButtondisapprove);
 
     }
 

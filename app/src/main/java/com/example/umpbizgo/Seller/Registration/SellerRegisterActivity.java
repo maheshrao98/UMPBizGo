@@ -155,7 +155,7 @@ public class SellerRegisterActivity extends AppCompatActivity implements View.On
     }
 
     public void BackToMainPage(View view) {
-        Intent intent = new Intent(SellerRegisterActivity.this, MainActivity.class);
+        Intent intent = new Intent(SellerRegisterActivity.this, SellerLoginActivity.class);
         startActivity(intent);
         Animatoo.animateSlideUp(this);
         finish();

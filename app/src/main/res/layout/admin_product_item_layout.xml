@@ -72,36 +72,6 @@
                 android:textColor="#04B4AE"
                 android:textSize="12dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@+id/aproduct_price"
-                android:weightSum="2"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                >
-
-                <ImageButton
-                    android:id="@+id/imageButtonapprove"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                   android:layout_marginEnd="40dp"
-                    android:background="@android:color/transparent"
-                    android:tint="@color/colorAccentLight"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_checkmark_for_verification" />
-
-                <ImageButton
-                    android:id="@+id/imageButtondisapprove"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:background="@android:color/transparent"
-                    android:tint="@color/colorAccentLight"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_cross_remove_sign" />
-
-            </LinearLayout>
 
         </RelativeLayout>
     </RelativeLayout>

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorBack"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -43,7 +44,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorAccentDarkShade"
+                    android:background="@drawable/header_shadow"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -57,7 +58,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-medium"
                             android:text="Welcome"
-                            android:textColor="#ffff"
+                            android:textColor="@color/colorSecondaryLight"
                             android:textSize="18sp" />
 
                         <RelativeLayout
@@ -86,7 +87,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/cabin_medium"
                             android:text="User Name"
-                            android:textColor="#ffff"
+                            android:textColor="@color/colorSecondaryLight"
                             android:textSize="24dp" />
 
 
@@ -149,7 +150,7 @@
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@color/colorAccent"
+                                    android:background="@color/colorAccentDarkShade"
                                     android:padding="8dp">
 
                                     <ImageView
@@ -166,7 +167,7 @@
                                         android:layout_centerHorizontal="true"
                                         android:fontFamily="casual"
                                         android:text="Beverages"
-                                        android:textColor="@color/colorSecondaryLight"
+                                        android:textColor="#2B2A29"
                                         android:textSize="13dp" />
 
                                 </RelativeLayout>
@@ -186,7 +187,7 @@
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@color/colorAccent"
+                                    android:background="@color/colorAccentDarkShade"
                                     android:padding="8dp">
 
                                     <ImageView
@@ -203,7 +204,7 @@
                                         android:fontFamily="casual"
                                         android:gravity="center"
                                         android:text="Clothes"
-                                        android:textColor="@color/colorSecondaryLight"
+                                        android:textColor="#2B2A29"
                                         android:textSize="13dp" />
 
                                 </RelativeLayout>
@@ -223,7 +224,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -241,7 +242,7 @@
                                     android:gravity="center"
                                     android:fontFamily="casual"
                                     android:text="Home Appliances"
-                                    android:textColor="@color/colorSecondaryLight"
+                                    android:textColor="#2B2A29"
                                     android:textSize="12dp" />
 
                             </RelativeLayout>
@@ -261,7 +262,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -298,7 +299,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -336,7 +337,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -374,7 +375,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -412,7 +413,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -450,7 +451,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -488,7 +489,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorAccent"
+                                android:background="@color/colorAccentDarkShade"
                                 android:padding="8dp">
 
                                 <ImageView
@@ -541,7 +542,7 @@
         android:elevation="6dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

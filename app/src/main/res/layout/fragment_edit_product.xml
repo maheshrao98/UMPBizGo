@@ -36,6 +36,17 @@
                 android:tint="@android:color/white"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/back_button_icon" />
+
+            <ImageButton
+                android:id="@+id/deleteauthorizedproduct"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_trash" />
         </RelativeLayout>
 
 
@@ -53,6 +64,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <ImageView
             android:id="@+id/change_authorized_product_image"
@@ -129,7 +142,7 @@
             android:background="@drawable/skip_button"
             android:text="Product Price"
             android:textColor="#191919"
-            android:inputType="number"
+            android:inputType="text|numberDecimal"
             android:padding="16dp" />
 
             <TextView

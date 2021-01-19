@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.umpbizgo.Customer.CartFragment;
 import com.example.umpbizgo.Customer.HomeFragment;
 import com.example.umpbizgo.Fragments.LogOutFragment;
 import com.example.umpbizgo.Fragments.MyAccountBeforeLogin;
@@ -26,10 +27,13 @@ import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.R;
 import com.example.umpbizgo.Seller.Orders.SellerOrderViewActivity;
 import com.example.umpbizgo.Seller.Orders.SellerOrderViewFragment;
-import com.example.umpbizgo.Seller.Products.AddProductFragment;
+import com.example.umpbizgo.Seller.Products.AddProductActivity;
 import com.example.umpbizgo.Seller.Products.SellerProductViewActivity;
+import com.example.umpbizgo.Seller.SocialPosts.AddSocialPostsActivity;
+import com.example.umpbizgo.Seller.SocialPosts.ManagePostsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,10 +41,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SellerHomeActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
     private FirebaseAuth firebaseAuth;
     private String userID;
-    private CardView AddNewProduct, ManageProducts, ManageOrder;
+    private CardView AddNewProduct, AddPosts, ManageProducts, ManageOrder, ManagePost, ManageShop;
     TextView shopnameview;
     FrameLayout frameLayout;
 
@@ -58,20 +61,12 @@ public class SellerHomeActivity extends AppCompatActivity {
 
         // Firebase //
         firebaseAuth = FirebaseAuth.getInstance();
-        userID = firebaseAuth.getCurrentUser().getUid();
 
-        bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomnavigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navigation);
 
-        //final Fragment SellerOrderFragment = new SellerOrderViewFragment();
-        //final Fragment AddProductFragment = new PickCategoryFragment();
-        //final Fragment SellerHomeFragment = new HomeFragment();
-        //final FragmentManager fm = getSupportFragmentManager();
-        //Fragment active = SellerHomeFragment;
-
-        //fm.beginTransaction().add(R.id.frameLayout, SellerOrderFragment, "3").hide(SellerOrderFragment).commit();
-        //fm.beginTransaction().add(R.id.frameLayout, AddProductFragment, "2").hide(AddProductFragment).commit();
-        //fm.beginTransaction().add(R.id.frameLayout, SellerHomeFragment, "1").hide(SellerHomeFragment).commit();
+        FirebaseUser mFirebaseUser = firebaseAuth.getCurrentUser();
+        if(mFirebaseUser != null) {
+            userID = mFirebaseUser.getUid(); //Do what you need to do with the id
+        }
 
         shopnameview = findViewById(R.id.shopnamedisplay);
         usernamedisplay(shopnameview);
@@ -80,14 +75,15 @@ public class SellerHomeActivity extends AppCompatActivity {
         AddNewProduct = findViewById(R.id.addnewproduct);
         ManageProducts = findViewById(R.id.manageproducts);
         ManageOrder = findViewById(R.id.manageorders);
+        ManagePost = findViewById(R.id.manageposts);
+        AddPosts = findViewById(R.id.addposts);
+        ManageShop = findViewById(R.id.myshop);
 
         AddNewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager ft = getSupportFragmentManager();
-                final FragmentTransaction fragmentTransaction = ft.beginTransaction();
-                final AddProductFragment fragsellerhomeactivity = new AddProductFragment();
-                fragmentTransaction.add(R.id.framesellerLayout, fragsellerhomeactivity).commit();
+                Intent intent =new Intent(SellerHomeActivity.this, AddProductActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -103,6 +99,30 @@ public class SellerHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(SellerHomeActivity.this, SellerOrderViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        AddPosts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(SellerHomeActivity.this, AddSocialPostsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ManagePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(SellerHomeActivity.this, ManagePostsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ManageShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(SellerHomeActivity.this, ShopProfileActivity.class);
                 startActivity(intent);
             }
         });
@@ -124,70 +144,24 @@ public class SellerHomeActivity extends AppCompatActivity {
         });
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navigation =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                    Fragment selectedFragment = null;
-
-                    switch (item.getItemId()) {
-
-                        case R.id.orders:
-                            selectedFragment = new SellerOrderViewFragment();
-                            break;
-
-                        case R.id.products:
-                            Intent productview = new Intent(SellerHomeActivity.this, SellerProductViewActivity.class);
-                            startActivity(productview);
-                            break;
-
-                        case R.id.home:
-                            selectedFragment = new HomeFragment();
-                            break;
-
-                        case R.id.feed:
-                            selectedFragment = new PickCategoryFragment();
-                            break;
-                        case R.id.myaccount:
-                            selectedFragment = new MyAccountBeforeLogin();
-                            break;
-                    }
-                    ///////////////Replacing by default fragment on home activity/////////////////
-                    getSupportFragmentManager().beginTransaction().replace(R.id.framesellerLayout,
-                            selectedFragment).commit();
-                    return true;
-                }
-            };
-
     // Toolbar //
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_app_bar_seller, menu);
+        inflater.inflate(R.menu.home_logout_bar, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Fragment selectedFragment = null;
-
-        switch (item.getItemId()) {
-            case R.id.logout:
-                selectedFragment = new LogOutFragment();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        ///////////////Replacing by default fragment on home activity/////////////////
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
-                selectedFragment).commit();
-        return true;
-    }
-
-    //LogOut//
-    private void logout() {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(this, MainActivity.class));
+            switch (item.getItemId()) {
+                case R.id.logout2:
+                    Intent intent2 = new Intent(SellerHomeActivity.this, MainActivity.class);
+                    intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent2);
+                    break;
+            }
+        return false;
     }
 }

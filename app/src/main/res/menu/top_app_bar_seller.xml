@@ -5,7 +5,7 @@
     <item
         android:id="@+id/sellerhome"
         android:title="Home"
-        android:icon="@drawable/ic__36_shop"
+        android:icon="@drawable/ic_home__2_"
         app:showAsAction="ifRoom"
         >
     </item>

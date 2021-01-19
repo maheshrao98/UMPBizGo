@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.example.umpbizgo.Holder.OrderViewHolder;
 import com.example.umpbizgo.Models.Orders;
 import com.example.umpbizgo.R;
-import com.example.umpbizgo.Seller.Orders.EditUnshippedOrdersFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,7 +81,7 @@ public class SellerOrderViewFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        EditUnshippedOrdersFragment fragsellerorderview = new EditUnshippedOrdersFragment();
+                        EditShippedOrdersFragment fragsellerorderview = new EditShippedOrdersFragment();
                         Bundle bundle =new Bundle();
                         bundle.putString("orderID",model.getOid());
                         fragsellerorderview.setArguments(bundle);

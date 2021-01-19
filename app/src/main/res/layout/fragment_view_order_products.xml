@@ -5,7 +5,7 @@
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Customer.ViewOrderProductsFragment"
+    tools:context=".Customer.Order.CheckOrderProductsFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,12 +84,12 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/skip_button"
                 android:drawableLeft="@drawable/name_icon"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimaryDark"
+                android:drawableTint="@color/colorSecondaryLight"
                 android:text="Product Name"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorSecondaryLight"
                 android:padding="16dp"/>
 
             <TextView
@@ -101,12 +101,12 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/skip_button"
                 android:drawableStart="@drawable/phone_icon"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimaryDark"
+                android:drawableTint="@color/colorSecondaryLight"
                 android:text="Product Quantity"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorSecondaryLight"
                 android:padding="16dp"
                 />
 
@@ -117,14 +117,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="20dp"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:background="@drawable/skip_button"
                 android:drawableStart="@drawable/home_icon"
                 android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimaryDark"
+                android:drawableTint="@color/colorSecondaryLight"
                 android:text="Product Price"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorSecondaryLight"
                 android:padding="16dp"
                  />
 
@@ -136,14 +136,14 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:elevation="12dp"
+                android:elevation="8dp"
                 android:background="@drawable/skip_button"
                 android:drawableStart="@drawable/city_icon"
                 android:drawablePadding="8dp"
-                android:drawableTint="@color/colorPrimaryDark"
+                android:drawableTint="@color/colorSecondaryLight"
                 android:text="Total Price"
                 android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorSecondaryLight"
                 android:padding="16dp"
                  />
         </LinearLayout>

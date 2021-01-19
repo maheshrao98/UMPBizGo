@@ -1,10 +1,14 @@
 package com.example.umpbizgo.Customer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +20,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.umpbizgo.Customer.Order.CheckOrderProductsFragment;
+import com.example.umpbizgo.Customer.Order.ViewReviewFragment;
+import com.example.umpbizgo.Holder.ProductRatingViewHolder;
+import com.example.umpbizgo.Holder.ProductViewHolder;
+import com.example.umpbizgo.Models.ProductRatings;
 import com.example.umpbizgo.Models.Products;
 import com.example.umpbizgo.R;
+import com.example.umpbizgo.Seller.Products.EditAuthorizedProductFragment;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,12 +37,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Queue;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,7 +54,7 @@ import java.util.HashMap;
  * create an instance of this fragment.
  */
 public class ProductDetailsFragment extends Fragment {
-    private Button addtowishlistButton,  buynowbutton;
+    private Button addtowishlistButton,  buynowbutton, viewreviewbutton;
     private ImageView productImage;
     private ImageButton backtoproductbutton;
     private ElegantNumberButton numberButton;
@@ -46,7 +62,12 @@ public class ProductDetailsFragment extends Fragment {
     private String productID = "";
     private String sellerID = "";
     private String ProductImage = "";
+    private String cartitemid = "";
+    String ratingid;
     private FirebaseAuth firebaseAuth;
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
+    DatabaseReference productRatingReference;
     View view;
 
 
@@ -68,8 +89,9 @@ public class ProductDetailsFragment extends Fragment {
             ProductImage = bundle.getString("image");
         }
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        productRatingReference = FirebaseDatabase.getInstance().getReference().child("Ratings");
 
+        firebaseAuth = FirebaseAuth.getInstance();
 
         backtoproductbutton = view.findViewById(R.id.backtoproductpage);
         addtowishlistButton = (Button)view.findViewById(R.id.pd_add_to_wishlist_button);
@@ -81,7 +103,6 @@ public class ProductDetailsFragment extends Fragment {
         productDescription = (TextView)view.findViewById(R.id.productdetailsdescription);
         productName = (TextView)view.findViewById(R.id.product_name_details);
         brandName = view.findViewById(R.id.brand_name);
-
 
         getProductDetails(productID);
         addtowishlistButton.setOnClickListener(new View.OnClickListener() {
@@ -105,12 +126,13 @@ public class ProductDetailsFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
     private void buynowproduct() {
         FragmentTransaction ft3 = getFragmentManager().beginTransaction();
-        ViewOrderProductsFragment fragproductsdetails = new ViewOrderProductsFragment();
+        CheckOrderProductsFragment fragproductsdetails = new CheckOrderProductsFragment();
         Bundle bundle =new Bundle();
         bundle.putString("pid",productID);
         bundle.putString("sellerID",sellerID);
@@ -143,8 +165,11 @@ public class ProductDetailsFragment extends Fragment {
 
         final DatabaseReference cartListReference = FirebaseDatabase.getInstance().getReference().child("Wish List");
 
+        cartitemid = cartListReference.push().getKey();
+
         final HashMap<String, Object> cartMap = new HashMap<>();
-        cartMap.put("pid", productID);
+        cartMap.put("cid", cartitemid);
+        cartMap.put("pid",productID);
         cartMap.put("productname", productName.getText().toString());
         cartMap.put("price", productPrice.getText().toString());
         cartMap.put("date", saveCurrentDate);
@@ -152,19 +177,21 @@ public class ProductDetailsFragment extends Fragment {
         cartMap.put("quantity", numberButton.getNumber());
         cartMap.put("sellerbusinessname", brandName.getText().toString());
         cartMap.put("sellerID", sellerID);
-        cartMap.put("productImage", ProductImage);
+        cartMap.put("image", ProductImage);
 
         cartListReference.child(firebaseAuth.getCurrentUser().getUid())
-                .child(productID)
+                .child(cartitemid)
                 .updateChildren(cartMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), " Added To WishList", Toast.LENGTH_SHORT).show();
-
                             FragmentTransaction ft = getFragmentManager().beginTransaction();
-                            BrowseProductFragment fragdetailsproduct = new BrowseProductFragment();
+                            CartFragment fragdetailsproduct = new CartFragment();
+                            Bundle bundle =new Bundle();
+                            bundle.putString("pid",productID);
+                            fragdetailsproduct.setArguments(bundle);
                             ft.replace(R.id.frame_prod_detail, fragdetailsproduct);
                             ft.commit();
 

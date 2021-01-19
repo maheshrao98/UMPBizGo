@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         plateModelList = new ArrayList<>();
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
-        plateModelList.add(new PlateModel(R.drawable.foodplate));
+        plateModelList.add(new PlateModel(R.drawable.main_beverage));
+        plateModelList.add(new PlateModel(R.drawable.main_books));
+        plateModelList.add(new PlateModel(R.drawable.main_cannedfood));
+        plateModelList.add(new PlateModel(R.drawable.main_dairy));
+        plateModelList.add(new PlateModel(R.drawable.main_drugs));
+        plateModelList.add(new PlateModel(R.drawable.main_electrical));
+        plateModelList.add(new PlateModel(R.drawable.main_groceries));
+        plateModelList.add(new PlateModel(R.drawable.main_sports));
 
         plateAdapter = new PlateAdapter(plateModelList,this);
         recyclerView.setAdapter(plateAdapter);
@@ -119,12 +119,5 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable,speedScroll);
-    }
-
-    public void goToHomePage(View view) {
-        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
-        Animatoo.animateSwipeLeft(MainActivity.this);
     }
 }

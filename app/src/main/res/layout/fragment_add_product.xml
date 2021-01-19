@@ -15,7 +15,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clickable="false">
 
         <include
@@ -45,7 +45,6 @@
             android:elevation="10dp"
             android:background="@drawable/skip_button"
             android:hint="Product Name"
-            android:textColorHint="#191919"
             android:textColor="@android:color/black"
             android:inputType="textMultiLine"
             android:padding="16dp" />
@@ -61,7 +60,6 @@
             android:elevation="10dp"
             android:background="@drawable/skip_button"
             android:hint="Product Description"
-            android:textColorHint="#191919"
             android:textColor="@android:color/black"
             android:inputType="textMultiLine"
             android:padding="16dp" />
@@ -77,9 +75,8 @@
             android:elevation="10dp"
             android:background="@drawable/skip_button"
             android:hint="Product Price"
-            android:textColorHint="#191919"
             android:textColor="@android:color/black"
-            android:inputType="number"
+            android:inputType="numberSigned"
             android:padding="16dp" />
 
         <TextView
@@ -94,7 +91,6 @@
             android:background="@drawable/skip_button"
             android:textSize="18sp"
             android:textColor="@android:color/black"
-            android:textColorHint="#191919"
             android:text="Product Category"
             android:padding="16dp" />
 

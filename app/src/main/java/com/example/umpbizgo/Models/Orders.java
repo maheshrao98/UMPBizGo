@@ -1,12 +1,14 @@
 package com.example.umpbizgo.Models;
 
 public class Orders {
-    private String cityaddress, date, homeaddress, name, phonenumber, state, time, totalAmount, oid, pid, productname, price, quantity, discount, productImage, sellerbusinessname, trackingno;
+    private String cityaddress, date, homeaddress, name, phonenumber, state, time, totalAmount, oid, pid, productname,
+            price, quantity, discount, productImage, sellerbusinessname, trackingno, payment;
 
     public Orders() {
     }
 
-    public Orders(String cityaddress, String date, String homeaddress, String name, String phonenumber, String state, String time, String totalAmount, String oid, String pid, String productname, String price, String quantity, String discount, String productImage, String sellerbusinessname, String trackingno) {
+    public Orders(String cityaddress, String date, String homeaddress, String name, String phonenumber, String state, String time, String totalAmount, String oid, String pid, String productname,
+                  String price, String quantity, String discount, String productImage, String sellerbusinessname, String trackingno, String payment) {
         this.cityaddress = cityaddress;
         this.date = date;
         this.homeaddress = homeaddress;
@@ -24,6 +26,15 @@ public class Orders {
         this.productImage = productImage;
         this.sellerbusinessname = sellerbusinessname;
         this.trackingno = trackingno;
+        this.payment = payment;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
     }
 
     public String getTrackingno() {

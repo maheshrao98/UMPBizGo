@@ -36,31 +36,21 @@
         </RelativeLayout>
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:elevation="40dp"
-            app:cardCornerRadius="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/cabin_medium"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
-                android:text="My Account"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp" />
-        </androidx.cardview.widget.CardView>
+                android:text="My Profile"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+            </TextView>
 
 
         <LinearLayout
@@ -74,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/cardView"
+            app:layout_constraintTop_toTopOf="@id/relativeLayout"
             app:layout_constraintVertical_bias="0.303">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -84,10 +74,11 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="24dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_customer"
-                app:civ_border_color="@color/colorPrimaryDark"
+                android:src="@drawable/ic_landscape"
+                app:civ_border_color="@color/colorSecondaryLight"
                 app:civ_border_width="2dp"
-                android:focusable="true" />
+                android:focusable="true"
+                />
 
             <TextView
                 android:id="@+id/change_profile_picture_btn"
@@ -112,10 +103,10 @@
                 android:drawableLeft="@drawable/name_icon"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/colorPrimaryDark"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:hint ="Name"
                 android:padding="16dp"
-                android:textColorHint="@color/colorPrimaryDark" />
+                android:textColorHint="@color/colorSecondaryLight" />
 
             <EditText
                 android:id="@+id/user_email"
@@ -128,10 +119,10 @@
                 android:drawableStart="@drawable/email_icon"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/colorPrimaryDark"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:hint="Email"
                 android:padding="16dp"
-                android:textColorHint="@color/colorPrimaryDark" />
+                android:textColorHint="@color/colorSecondaryLight" />
 
             <EditText
                 android:id="@+id/user_password"
@@ -144,10 +135,10 @@
                 android:drawableStart="@drawable/password_icon"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/colorPrimaryDark"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:hint="Password"
                 android:padding="16dp"
-                android:textColorHint="@color/colorPrimaryDark" />
+                android:textColorHint="@color/colorSecondaryLight" />
 
             <EditText
                 android:id="@+id/user_phone_number"
@@ -160,10 +151,10 @@
                 android:drawableStart="@drawable/phone_icon"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/colorPrimaryDark"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:hint="Phone Number"
                 android:padding="16dp"
-                android:textColorHint="@color/colorPrimaryDark" />
+                android:textColorHint="@color/colorSecondaryLight" />
 
             <EditText
                 android:id="@+id/user_home_address"
@@ -176,10 +167,10 @@
                 android:drawableStart="@drawable/home_icon"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/colorPrimaryDark"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:hint="Home Address"
                 android:padding="16dp"
-                android:textColorHint="@color/colorPrimaryDark" />
+                android:textColorHint="@color/colorSecondaryLight" />
 
             <EditText
                 android:id="@+id/user_city_address"
@@ -193,10 +184,10 @@
                 android:drawableStart="@drawable/city_icon"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/colorPrimaryDark"
-                android:elevation="20dp"
+                android:elevation="8dp"
                 android:hint="City Address"
                 android:padding="16dp"
-                android:textColorHint="@color/colorPrimaryDark" />
+                android:textColorHint="@color/colorSecondaryLight" />
 
 
         </LinearLayout>

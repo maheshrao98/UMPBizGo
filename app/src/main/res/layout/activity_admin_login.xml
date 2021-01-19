@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccentDarkShade"
     tools:context=".Admin.AdminLoginActivity">
 
     <RelativeLayout
@@ -49,7 +50,7 @@
             android:elevation="10dp"
             android:gravity="center"
             android:text="Sign In"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimaryDeep"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
@@ -66,7 +67,7 @@
         <EditText
             android:id="@+id/adminaddresslogininput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -74,15 +75,17 @@
             android:drawableStart="@drawable/email_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
-            android:hint="Email"
+            android:elevation="10dp"
+            android:hint="Email Address"
+            android:textColor="@android:color/black"
             android:inputType="textEmailAddress"
-            android:padding="16dp" />
+            android:padding="15dp" />
+
 
         <EditText
             android:id="@+id/adminloginpasswordinput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -90,8 +93,9 @@
             android:drawableStart="@drawable/password_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
+            android:elevation="10dp"
             android:hint="Password"
+            android:textColor="@android:color/black"
             android:inputType="textPassword"
             android:padding="16dp" />
 

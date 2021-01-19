@@ -22,8 +22,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.umpbizgo.Customer.AdPosts.ViewAdPostsFragment;
+import com.example.umpbizgo.Customer.Order.ViewUnshippedOrdersFragment;
 import com.example.umpbizgo.Fragments.LogOutFragment;
-import com.example.umpbizgo.Fragments.MyAccountBeforeLogin;
 import com.example.umpbizgo.Holder.ProductViewHolder;
 import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.Models.Products;
@@ -298,19 +299,16 @@ public class HomeActivity extends AppCompatActivity {
                             selectedFragment = new BrowseProductFragment();
                             break;
 
-                        case R.id.orders:
-                            selectedFragment = new CustomerViewOrdersFragment();
-                            break;
-
                         case R.id.home:
                             selectedFragment = new HomeFragment();
                             break;
 
                         case R.id.feed:
-                            selectedFragment = new LogOutFragment();
+                            selectedFragment = new ViewAdPostsFragment();
                             break;
+
                         case R.id.myaccount:
-                            selectedFragment = new MyAccountCustomerFragment();
+                            selectedFragment = new CustomerUserPageFragment();
                             break;
                     }
                     ///////////////Replacing by default fragment on home activity/////////////////

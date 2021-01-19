@@ -80,7 +80,7 @@ public class SellerShippedOrdersFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        EditShippedOrdersFragment fragsellerorderview = new EditShippedOrdersFragment();
+                        ViewShippedOrderDetailsFragment fragsellerorderview = new ViewShippedOrderDetailsFragment();
                         Bundle bundle =new Bundle();
                         bundle.putString("orderID",model.getOid());
                         fragsellerorderview.setArguments(bundle);

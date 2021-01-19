@@ -3,6 +3,7 @@ package com.example.umpbizgo.Admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,8 @@ import com.example.umpbizgo.Holder.ProductViewHolder;
 import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.Models.Products;
 import com.example.umpbizgo.R;
+import com.example.umpbizgo.Seller.Registration.SellerLoginActivity;
+import com.example.umpbizgo.Seller.SellerHomeActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,7 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class AdminProductApprovalActivity extends AppCompatActivity {
-    private DatabaseReference ProductReference, AuthorizedProductReference, DissapprovedProducts;
+    private DatabaseReference AuthorizedProductReference;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
@@ -46,30 +51,10 @@ public class AdminProductApprovalActivity extends AppCompatActivity {
 
         // Toolbar //
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.top_app_bar_seller);
         setSupportActionBar(toolbar);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.logout:
-                        Intent intent = new Intent(AdminProductApprovalActivity.this,
-                                MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    case R.id.sellerhome:
-                        Intent intent2 = new Intent(AdminProductApprovalActivity.this,
-                                AdminHomeActivity.class);
-                        startActivity(intent2);
-                }
+        toolbar.setTitle("Products");
 
-                return false;
-            }
-        });
-
-        ProductReference = FirebaseDatabase.getInstance().getReference().child("Unauthorized Products");
         AuthorizedProductReference = FirebaseDatabase.getInstance().getReference().child("Authorized Products");
-        DissapprovedProducts = FirebaseDatabase.getInstance().getReference().child("Unapproved Products");
 
         recyclerView = findViewById(R.id.admin_product_recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -82,7 +67,7 @@ public class AdminProductApprovalActivity extends AppCompatActivity {
         super.onStart();
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>()
-                        .setQuery(ProductReference,Products.class)
+                        .setQuery(AuthorizedProductReference,Products.class)
                         .build();
 
         FirebaseRecyclerAdapter<Products, AdminProductViewHolder> adapter =
@@ -97,62 +82,9 @@ public class AdminProductApprovalActivity extends AppCompatActivity {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                CharSequence options[] = new CharSequence[]
-                                        {
-                                                "View",
-                                                "Approve",
-                                                "Disapprove"
-                                        };
-                                AlertDialog.Builder builder = new AlertDialog.Builder(AdminProductApprovalActivity.this);
-                                builder.setTitle("Cart Options");
-
-                                builder.setItems(options, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        if (i==0)
-                                        {
-                                            FragmentManager fm = getSupportFragmentManager();
-                                            final FragmentTransaction ft = fm.beginTransaction();
-                                            final ProductDetailsFragment fragbrowseproduct = new ProductDetailsFragment();
-                                            Bundle bundle =new Bundle();
-                                            bundle.putString("pid",model.getPid());
-                                            fragbrowseproduct.setArguments(bundle);
-                                            ft.replace(R.id.frameapprovrproduct, fragbrowseproduct);
-                                            ft.commit();
-                                        }
-                                        if (i==1)
-                                        {
-                                            ProductReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    AuthorizedProductReference.setValue(snapshot.getValue());
-                                                    ProductReference.removeValue();
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                                }
-                                            });
-                                        }
-                                        if (i==2)
-                                        {
-                                            ProductReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    DissapprovedProducts.setValue(snapshot.getValue());
-                                                    ProductReference.removeValue();
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                                }
-                                            });
-                                        }
-                                    }
-                                });
-                                builder.show();
+                                Intent intent = new Intent(AdminProductApprovalActivity.this, AdminProductUnauthorizeActivity.class);
+                                intent.putExtra("pid", model.getPid());
+                                startActivity(intent);
                             }
                         });
                     }
@@ -169,4 +101,30 @@ public class AdminProductApprovalActivity extends AppCompatActivity {
         adapter.startListening();
 
     }
+
+    // Toolbar //
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.top_app_bar_seller, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Fragment selectedFragment = null;
+        switch (item.getItemId()) {
+            case R.id.logout:
+                Intent intent = new Intent(AdminProductApprovalActivity.this,
+                        MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            case R.id.sellerhome:
+                Intent intent2 = new Intent(AdminProductApprovalActivity.this,
+                        AdminHomeActivity.class);
+                startActivity(intent2);
+        }
+        return false;
+    }
+
 }

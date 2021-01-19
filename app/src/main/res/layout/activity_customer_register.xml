@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/colorAccentDarkShade"
     tools:context=".CustomerLoginRegister.CustomerRegisterActivity">
 
     <RelativeLayout
@@ -52,7 +52,7 @@
             android:fontFamily="cursive"
             android:gravity="center"
             android:text="Sign Up"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimaryDeep"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
@@ -78,9 +78,9 @@
             android:drawableLeft="@drawable/name_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
+            android:elevation="10dp"
             android:hint="Name"
-            android:textColorHint="@color/colorPrimaryDark"
+            android:textColor="@android:color/black"
             android:inputType="text"
             android:padding="16dp" />
 
@@ -95,9 +95,9 @@
             android:drawableLeft="@drawable/email_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
-            android:hint="Email"
-            android:textColorHint="@color/colorPrimaryDark"
+            android:elevation="10dp"
+            android:hint="Email Address"
+            android:textColor="@android:color/black"
             android:inputType="textEmailAddress"
             android:padding="16dp" />
 
@@ -113,9 +113,9 @@
             android:drawableLeft="@drawable/password_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
+            android:elevation="10dp"
             android:hint="Password"
-            android:textColorHint="@color/colorPrimaryDark"
+            android:textColor="@android:color/black"
             android:inputType="textPassword"
             android:padding="16dp" />
 
@@ -125,9 +125,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Already have an account?"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimaryDeep"
             android:gravity="right"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="24dp"
 

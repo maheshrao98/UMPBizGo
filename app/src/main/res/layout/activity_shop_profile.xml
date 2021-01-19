@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Seller.ShopProfileActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_customer_account"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Customer.MyAccountCustomerFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            tools:context=".CustomerLoginRegister.CustomerRegisterActivity">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <ImageButton
+                    android:id="@+id/BacktoShopHomePageButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@android:color/transparent"
+                    android:tint="@android:color/white"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/back_button_icon" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:text="My Shop"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+            </TextView>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutuserprofile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/save_shop_info_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+                app:layout_constraintVertical_bias="0.152">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/shop_logo_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_landscape"
+                    app:civ_border_color="@color/colorSecondaryLight"
+                    app:civ_border_width="2dp" />
+
+                <TextView
+                    android:id="@+id/change_shop_logo_btn"
+                    android:layout_width="160dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/basicbutton"
+                    android:fontFamily="@font/cabin_medium"
+                    android:gravity="center"
+                    android:text="Change Shop Logo"
+                    android:textColor="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/shop_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/skip_button"
+                    android:drawableLeft="@drawable/name_icon"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:elevation="8dp"
+                    android:hint="Business Name"
+                    android:padding="16dp"
+                    android:textColor="@android:color/black"
+                    />
+
+                <EditText
+                    android:id="@+id/shop_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/skip_button"
+                    android:drawableStart="@drawable/email_icon"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:elevation="8dp"
+                    android:hint="Email"
+                    android:padding="16dp"
+                    android:textColor="@android:color/black"
+                     />
+
+                <EditText
+                    android:id="@+id/shop_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/skip_button"
+                    android:drawableStart="@drawable/password_icon"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:elevation="8dp"
+                    android:hint="Password"
+                    android:padding="16dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/shop_phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/skip_button"
+                    android:drawableStart="@drawable/phone_icon"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:elevation="8dp"
+                    android:hint="Phone Number"
+                    android:padding="16dp"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/shop_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/skip_button"
+                    android:drawableStart="@drawable/home_icon"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:elevation="12dp"
+                    android:hint="Shop Address"
+                    android:padding="16dp"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/save_shop_info_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/colorPrimaryDark"
+                android:drawableEnd="@drawable/save_icon"
+                android:paddingEnd="5dp"
+                android:drawableTint="#FFFFFF"
+                android:elevation="8dp"
+                android:text="Save Changes"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorAccentDarkShade"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Seller.Registration.SellerLoginActivity">
@@ -49,7 +50,7 @@
             android:fontFamily="cursive"
             android:gravity="center"
             android:text="Sign In"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimaryDeep"
             android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
@@ -67,7 +68,7 @@
         <EditText
             android:id="@+id/sellerloginemailinput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -75,15 +76,16 @@
             android:drawableLeft="@drawable/email_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
-            android:hint="Email"
+            android:elevation="10dp"
+            android:hint="Email Address"
             android:inputType="textEmailAddress"
+            android:textColor="@android:color/black"
             android:padding="16dp" />
 
         <EditText
             android:id="@+id/sellerloginpasswordinput"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
@@ -91,9 +93,10 @@
             android:drawableLeft="@drawable/password_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
+            android:elevation="10dp"
             android:hint="Password"
             android:inputType="textPassword"
+            android:textColor="@android:color/black"
             android:padding="16dp" />
 
 
@@ -103,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Don't have an account?"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimaryDeep"
             android:gravity="right"
             android:layout_marginRight="16dp"
             android:layout_marginBottom="16dp"

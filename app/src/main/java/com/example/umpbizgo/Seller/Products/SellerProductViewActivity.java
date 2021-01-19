@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.umpbizgo.Fragments.LogOutFragment;
+import com.example.umpbizgo.MainActivity;
 import com.example.umpbizgo.R;
 import com.example.umpbizgo.Seller.SellerHomeActivity;
 import com.google.android.material.tabs.TabLayout;
@@ -31,15 +32,14 @@ public class SellerProductViewActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.logout:
-                        FragmentManager ft2 = getSupportFragmentManager();
-                        final FragmentTransaction sellerFrag = ft2.beginTransaction();
-                        final LogOutFragment fragsellermyproducts = new LogOutFragment();
-                        sellerFrag.add(R.id.frameLayoutproductseller, fragsellermyproducts).commit();
-                        break;
                     case R.id.sellerhome:
-                        Intent productview = new Intent(SellerProductViewActivity.this, SellerHomeActivity.class);
-                        startActivity(productview);
+                        Intent intent = new Intent(SellerProductViewActivity.this, SellerHomeActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.logout:
+                        Intent intent2 = new Intent(SellerProductViewActivity.this, MainActivity.class);
+                        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent2);
                         break;
                 }
                 return false;

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/frame_payment"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.PaymentFragment">
+
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="8dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="13dp"
+                            android:src="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/cardaccountnumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="18dp"
+                            android:letterSpacing="0.0625"
+                            android:fontFamily="@font/acme"
+                            android:text="Make your payment"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="17.5sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.7dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="18.5dp"
+                            android:background="#6C6868" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="120dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/frame"
+                                    android:layout_width="110dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginStart="35dp"
+                                    android:src="@drawable/border_background"
+                                    app:tint="#707070" />
+
+                                <ImageView
+                                    android:layout_width="94dp"
+                                    android:layout_height="75dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/ic__40_visa" />
+
+
+                            </FrameLayout>
+
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:id="@+id/frame1"
+                                    android:layout_width="110dp"
+                                    android:layout_height="100dp"
+                                    android:layout_marginStart="29dp"
+                                    android:src="@drawable/border_background"
+                                    android:layout_marginTop="15dp"
+                                    app:tint="#707070" />
+
+                                <ImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="70dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic__25_mastercard" />
+                            </FrameLayout>
+
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:background="#f9f9f9 " />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <TextView
+                                android:id="@+id/accountcardname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/acme"
+                                android:text="CARDHOLDER NAME"
+                                android:letterSpacing="0.0425"
+                                android:textColor="#7a7a7a"
+                                android:textSize="13.3sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16.7dp"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/cardaccountnameinput"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="#00000000"
+                                    android:fontFamily="@font/acme"
+                                    android:hint="Name"
+                                    android:inputType="text"
+                                    android:letterSpacing="0.0425"
+                                    android:textColor="@android:color/black"
+                                    android:textColorHint="@color/colorSecondary"
+                                    android:textSize="16.7sp" />
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic__33_user" />
+                            </LinearLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="10dp"
+                                android:background="#323030" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@android:color/white"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/cardnumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/acme"
+                                android:text="CARD NUMBER"
+                                android:letterSpacing="0.0425"
+                                android:textColor="#7a7a7a"
+                                android:textSize="13.3sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16.7dp"
+                                android:orientation="horizontal">
+
+
+                                <EditText
+                                    android:id="@+id/cardaccountnumberinput"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:background="#00000000"
+                                    android:fontFamily="@font/acme"
+                                    android:hint="1234 - 1236 - 9865 - 3955"
+                                    android:inputType="number"
+                                    android:maxLength="16"
+                                    android:textColor="@android:color/black"
+                                    android:textColorHint="@color/colorSecondary"
+                                    android:textSize="15.5sp" />
+
+                                <ImageView
+                                    android:layout_width="25dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginRight="15dp"
+                                    android:src="@drawable/ic__19_credit_card"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#323030"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="18dp"
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/white"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+
+                                <TextView
+                                    android:id="@+id/CVVMSOS"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/acme"
+                                    android:text="CVV"
+                                    android:letterSpacing="0.0425"
+                                    android:textColor="#7a7a7a"
+                                    android:textSize="13.5sp" />
+
+                                <TextView
+                                    android:id="@+id/expiredate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/acme"
+                                    android:letterSpacing="0.0425"
+                                    android:layout_marginRight="0dp"
+                                    android:text="EXPIRATION DATE"
+                                    android:textColor="#7a7a7a"
+                                    android:textSize="13.5sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="30dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                       android:id="@+id/cvvinput"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="#00000000"
+                                        android:fontFamily="@font/acme"
+                                        android:hint="123"
+                                        android:inputType="number"
+                                        android:maxLength="3"
+                                        android:textColor="@android:color/black"
+                                        android:textColorHint="@color/colorSecondary"
+                                        android:textSize="15.5sp" />
+
+                                    <ImageView
+                                        android:layout_width="25dp"
+                                        android:layout_height="20dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_cvv"
+                                      />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="45dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/expiredateinput"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:layout_marginLeft="15dp"
+                                        android:background="#00000000"
+                                        android:fontFamily="@font/acme"
+                                        android:hint="08/22"
+                                        android:inputType="date"
+                                        android:textColor="@android:color/black"
+                                        android:textColorHint="@color/colorSecondary"
+                                        android:textSize="15.5sp" />
+
+                                    <ImageView
+                                        android:id="@+id/expirelayout"
+                                        android:layout_width="25dp"
+                                        android:layout_height="20dp"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_calendar"
+                                       />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#323030"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginEnd="18dp"
+                            />
+
+                        <Button
+                            android:id="@+id/paymentdone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginLeft="45dp"
+                            android:layout_marginRight="45dp"
+                            android:layout_marginTop="100dp"
+                            android:background="@color/colorPrimaryDark"
+                            android:fontFamily="@font/acme"
+                            android:gravity="center"
+                            android:text="Done"
+                            android:letterSpacing="0.0625"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:textSize="17sp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

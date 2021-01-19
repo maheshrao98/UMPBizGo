@@ -2,6 +2,7 @@ package com.example.umpbizgo.Seller.Products;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,9 +20,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.umpbizgo.Admin.AdminProductApprovalActivity;
+import com.example.umpbizgo.Admin.AdminProductUnauthorizeActivity;
 import com.example.umpbizgo.Models.Products;
 import com.example.umpbizgo.R;
 import com.google.android.gms.tasks.Continuation;
@@ -50,7 +54,7 @@ public class EditAuthorizedProductFragment extends Fragment {
     private TextView editproductcategory;
     private ImageView editproductimage;
     private Button editproductbutton;
-    private ImageButton gotoproductpage;
+    private ImageButton gotoproductpage, deleteproduct;
     private static final int GalleryPick = 1;
     private StorageReference ProductImageStorageReference;
     private DatabaseReference ProductReference;
@@ -83,6 +87,7 @@ public class EditAuthorizedProductFragment extends Fragment {
         edittoolbarnamedisplay = view.findViewById(R.id.editproductnamedisplay);
         editproductname = view.findViewById(R.id.edit_authorized_product_name);
         editproductcategory = view.findViewById(R.id.edit_authorized_product_category);
+        deleteproduct = view.findViewById(R.id.deleteauthorizedproduct);
 
         getProductDetails(productID);
 
@@ -108,6 +113,13 @@ public class EditAuthorizedProductFragment extends Fragment {
             }
         });
 
+        deleteproduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DeleteProduct();
+            }
+        });
+
         editproductbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +135,36 @@ public class EditAuthorizedProductFragment extends Fragment {
         });
 
         return  view;
+    }
+
+    private void DeleteProduct() {
+       AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.AlertDialog);
+       builder.setTitle("Confirm Delete Product");
+       builder.setMessage("Are you sure to delete the product?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                ProductReference.removeValue();
+                androidx.fragment.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+                SellerMyProductsFragment fragsellerproduct = new SellerMyProductsFragment();
+                ft.replace(R.id.frame_edit_auth_product, fragsellerproduct);
+                ft.commit();
+                Toast.makeText(getActivity(), "Product Deleted Succesfully.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                androidx.fragment.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+                SellerMyProductsFragment fragsellerproduct = new SellerMyProductsFragment();
+                ft.replace(R.id.frame_edit_auth_product, fragsellerproduct);
+                ft.commit();
+            }
+       });
+
+       builder.show();
     }
 
     private void categoryedit() {
@@ -184,7 +226,7 @@ public class EditAuthorizedProductFragment extends Fragment {
 
     private void uploadImage() {
         final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setTitle("Update Profile");
+        progressDialog.setTitle("Update Product");
         progressDialog.setMessage("Please wait we are updating your information");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
@@ -244,6 +286,7 @@ public class EditAuthorizedProductFragment extends Fragment {
         SellerMyProductsFragment frageditproductsdetails = new SellerMyProductsFragment();
         ft3.replace(R.id.frame_edit_auth_product, frageditproductsdetails);
         ft3.commit();
+        Toast.makeText(getActivity(), "Product information updated succesfully.", Toast.LENGTH_SHORT).show();
     }
 
     private void getProductDetails(String productID) {

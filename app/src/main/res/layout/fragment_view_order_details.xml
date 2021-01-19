@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/frame_cust_view_order_details"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F0EEF1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.Order.ViewUnshippedOrderDetailsFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <ImageButton
+            android:id="@+id/backtoviewcustomerorderunshippedButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:tint="#FFFFFF"
+            app:srcCompat="@drawable/back_button_icon" />
+
+        <TextView
+            android:id="@+id/od_unshipped_order_id_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/cabin_medium"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Order ID"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+           android:id="@+id/orderdefine"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="@color/colorSplashScreen"
+           android:padding="10dp"
+           android:layout_margin="10dp"
+           android:layout_below="@+id/relativeLayout">
+
+           <TextView
+               android:id="@+id/unorder_id"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="10dp"
+               android:layout_marginTop="8dp"
+               android:text="Order ID"
+               android:textColor="#FFFFFF"
+               android:textSize="21sp"
+               android:layout_marginEnd="5dp"
+               android:textStyle="bold">
+           </TextView>
+
+           <TextView
+               android:id="@+id/unorder_madetime"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="10dp"
+               android:layout_marginTop="8dp"
+               android:text="Order DateTime"
+               android:layout_below="@+id/unorder_id"
+               android:textColor="#FFFFFF"
+               android:textSize="21sp"
+               android:layout_marginEnd="5dp"
+               android:textStyle="bold">
+           </TextView>
+
+           <View
+               android:id="@+id/orderview1"
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:layout_gravity="center"
+               android:layout_marginTop="10dp"
+               android:layout_below="@+id/unorder_madetime"
+               android:background="@color/colorSplashScreen" />
+
+
+       </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/product_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="View Product Details"
+            android:layout_below="@+id/orderdefine"
+            android:textColor="@color/colorSecondaryLight"
+            android:textSize="24sp"
+            android:fontFamily="@font/cabin_medium"
+            android:layout_marginRight="5dp">
+        </TextView>
+
+    <RelativeLayout
+        android:id="@+id/productcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_details"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorSplashScreen">
+
+
+        <ImageView
+            android:id="@+id/unorder_product_image"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/groceries"
+            android:layout_marginStart="5dp"
+            android:padding="25dp"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/unorder_product_name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:layout_marginTop="10dp"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/unorder_product_quantity"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Product Quantity"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/unorder_product_name"
+            android:gravity="right"
+            android:layout_marginTop="10dp"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/unorder_product_price"
+            android:layout_width="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:text="Product Price"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/unorder_product_quantity"
+            android:gravity="right"
+            android:layout_marginTop="10dp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/unorder_totalprice"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Total Price"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/unorder_product_price"
+            android:gravity="right"
+            android:layout_marginTop="10dp"
+            >
+        </TextView>
+
+
+    </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tracking_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="View Tracking Details"
+            android:layout_below="@+id/productcard"
+            android:textColor="@color/colorSecondaryLight"
+            android:textSize="24sp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/cabin_medium">
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/trackingdefine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorSplashScreen"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/tracking_details">
+
+            <TextView
+                android:id="@+id/untracking_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="Tracking No"
+                android:textColor="#FFFFFF"
+                android:textSize="21sp"
+                android:layout_marginEnd="5dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/unorder_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text="Order Status"
+                android:layout_below="@+id/untracking_no"
+                android:textColor="#FFFFFF"
+                android:textSize="21sp"
+                android:layout_marginEnd="5dp"
+                android:textStyle="bold">
+            </TextView>
+
+            <View
+                android:id="@+id/orderview2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/unorder_state"
+                android:background="@color/colorSplashScreen" />
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/od_unshipped_cancel_order_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/trackingdefine"
+            android:background="@color/colorPrimaryDark"
+            android:drawableEnd="@drawable/rigt_arrow"
+            android:drawableTint="@android:color/white"
+            android:text="Cancel Order"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+
+</FrameLayout>

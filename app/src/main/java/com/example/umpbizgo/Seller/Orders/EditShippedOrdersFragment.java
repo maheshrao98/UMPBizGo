@@ -38,9 +38,8 @@ public class EditShippedOrdersFragment extends Fragment {
     EditText postalinformation;
     ImageView productimage;
     ImageButton backtoorder;
-    Switch addpostal;
     DatabaseReference orderReference;
-    Button updateOrderButton;
+    Button updateOrderButton, cancelorder;
     String orderID;
 
 
@@ -53,7 +52,7 @@ public class EditShippedOrdersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_edit_shipped_order_seller, container, false);
-        orderReference = FirebaseDatabase.getInstance().getReference().child("Shipped Orders");
+        orderReference = FirebaseDatabase.getInstance().getReference().child("Orders");
         productname = view.findViewById(R.id.od_shipped_product_name);
         productimage = view.findViewById(R.id.od_shipped_product_image);
         productquantity = view.findViewById(R.id.od_shipped_product_quantity);
@@ -63,6 +62,7 @@ public class EditShippedOrdersFragment extends Fragment {
         orderidtoolbar = view.findViewById(R.id.od_shipped_order_id_toolbar);
         backtoorder = view.findViewById(R.id.backtoviewsellerordershippedButton);
         postalinformation = view.findViewById(R.id.od_shipped_order_postal);
+        cancelorder = view.findViewById(R.id.od_shipped_cancel_order_button);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -94,8 +94,25 @@ public class EditShippedOrdersFragment extends Fragment {
                 UpdateData();
             }
         });
+        
+        cancelorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CancelOrder();
+            }
+        });
 
         return view;
+    }
+
+    private void CancelOrder() {
+        FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+        CancelOrderFragment fragorderproductview = new CancelOrderFragment();
+        Bundle bundle =new Bundle();
+        bundle.putString("orderID",orderID);
+        fragorderproductview.setArguments(bundle);
+        ft3.replace(R.id.frame_order_shipping, fragorderproductview);
+        ft3.commit();
     }
 
     private void UpdateData() {
@@ -107,7 +124,7 @@ public class EditShippedOrdersFragment extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getActivity(),"Shipping Information Updated", Toast.LENGTH_SHORT).show();
-                    if(Orderstatus.getText().toString().equals("Already Shipped"))
+                    if(Orderstatus.getText().toString().equals("Shipped"))
                     {
                         orderReference.child(orderID).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -127,25 +144,15 @@ public class EditShippedOrdersFragment extends Fragment {
                             }
                         });
                     }
-                    else if(Orderstatus.getText().toString().equals("Cancelled"))
+                    else if(Orderstatus.getText().toString().equals("Not Shipped"))
                     {
-                        orderReference.child(orderID).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                FirebaseDatabase.getInstance().getReference().child("Cancelled Orders").child(orderID).setValue(snapshot.getValue());
-                                orderReference.child(orderID).removeValue();
-
-                                FragmentTransaction ft3 = getFragmentManager().beginTransaction();
-                                SellerOrderViewFragment fragorderproductview = new SellerOrderViewFragment();
-                                ft3.replace(R.id.frame_order_shipping, fragorderproductview);
-                                ft3.commit();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
+                        FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+                        SellerOrderViewFragment fragorderproductview = new SellerOrderViewFragment();
+                        Bundle bundle =new Bundle();
+                        bundle.putString("orderID",orderID);
+                        fragorderproductview.setArguments(bundle);
+                        ft3.replace(R.id.frame_order_shipping, fragorderproductview);
+                        ft3.commit();
                     }
                 }
             }
@@ -154,7 +161,7 @@ public class EditShippedOrdersFragment extends Fragment {
 
     private void statusdialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Update Shipping information")
+        builder.setTitle("Have you shipped the order?")
                 .setItems(OrderStatusConstants.status, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

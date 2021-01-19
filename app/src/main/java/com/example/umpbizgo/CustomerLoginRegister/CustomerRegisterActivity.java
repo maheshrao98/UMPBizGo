@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -27,11 +28,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class CustomerRegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class CustomerRegisterActivity extends AppCompatActivity  {
 
     private static final String TAG = "TAG" ;
     private EditText emailinput, passwordinput , usernameinput;
     private ProgressBar progressBar;
+    private Button registerbutton;
 
     private FirebaseAuth mAuth;
     String userID;
@@ -56,21 +58,15 @@ public class CustomerRegisterActivity extends AppCompatActivity implements View.
 
         progressBar = findViewById(R.id.progressBar);
 
-        findViewById(R.id.customerregisterbutton).setOnClickListener(this);
+        registerbutton = findViewById(R.id.customerregisterbutton);
 
-    }
+        registerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerCustomer();
+            }
+        });
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        ///// Check if the user is already logged in/////
-        if(mAuth.getCurrentUser() != null){
-            ///// If User already logged in, then direct user to Home Activity/////
-            Intent intent = new Intent(CustomerRegisterActivity.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 
     private void registerCustomer() {
@@ -147,12 +143,4 @@ public class CustomerRegisterActivity extends AppCompatActivity implements View.
         finish();
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.customerregisterbutton:
-                registerCustomer();
-                break;
-        }
-    }
 }

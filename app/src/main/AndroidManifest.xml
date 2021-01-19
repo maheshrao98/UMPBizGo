@@ -17,7 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Seller.Orders.SellerOrderViewActivity"></activity>
+        <activity android:name=".Seller.SocialPosts.EditPostActivity"></activity>
+        <activity android:name=".Admin.AdminProductUnauthorizeActivity" />
+        <activity android:name=".Seller.ShopProfileActivity" />
+        <activity android:name=".Seller.SocialPosts.ManagePostsActivity" />
+        <activity android:name=".Seller.SocialPosts.AddSocialPostsActivity" />
+        <activity android:name=".Seller.Products.AddProductActivity" />
+        <activity android:name=".Customer.Order.CustomerOrderViewActivity" />
+        <activity android:name=".Seller.Orders.SellerOrderViewActivity" />
         <activity android:name=".Admin.AdminProductApprovalActivity" />
         <activity android:name=".Seller.Products.SellerProductViewActivity" />
         <activity android:name=".Admin.AdminHomeActivity" />

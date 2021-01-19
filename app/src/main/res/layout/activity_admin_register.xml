@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/colorAccentDarkShade"
     tools:context=".Admin.AdminRegisterActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="50dp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +21,10 @@
             android:id="@+id/imageButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"
             android:background="@android:color/transparent"
-            android:tint="@android:color/white"
+            android:tint="#FFFFFF"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/back_button_icon" />
 
@@ -32,40 +32,30 @@
     </RelativeLayout>
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="64dp"
-        android:elevation="20dp"
-        app:cardCornerRadius="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/relativeLayout">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="cursive"
+            android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="Sign Up"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="30sp" />
-    </androidx.cardview.widget.CardView>
+            android:textColor="#FFFFFF"
+            android:text="Admin Registration"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/customerregisterbutton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
         <EditText
             android:id="@+id/adminusernameinput"
@@ -78,11 +68,11 @@
             android:drawableLeft="@drawable/name_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
+            android:elevation="10dp"
             android:hint="Name"
-            android:textColorHint="@color/colorPrimaryDark"
             android:inputType="text"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/adminemailinput"
@@ -95,11 +85,11 @@
             android:drawableLeft="@drawable/email_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
-            android:hint="Email"
-            android:textColorHint="@color/colorPrimaryDark"
+            android:elevation="10dp"
+            android:hint="Email Address"
             android:inputType="textEmailAddress"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:textColor="@android:color/black" />
 
         <EditText
             android:id="@+id/adminpasswordinput"
@@ -113,11 +103,11 @@
             android:drawableLeft="@drawable/password_icon"
             android:drawablePadding="8dp"
             android:drawableTint="@color/colorPrimaryDark"
-            android:elevation="20dp"
+            android:elevation="10dp"
             android:hint="Password"
-            android:textColorHint="@color/colorPrimaryDark"
             android:inputType="textPassword"
-            android:padding="16dp" />
+            android:padding="16dp"
+            android:textColor="@android:color/black" />
 
 
     </LinearLayout>

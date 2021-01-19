@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@+id/frame_rate_order"
+    android:background="@drawable/background_white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/colorBack"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.Order.RateOrderFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            >
+
+            <ImageButton
+                android:id="@+id/backtomainpage3Button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/back_button_icon" />
+
+            <TextView
+                android:id="@+id/od_rateshipped_order_id_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/cabin_medium"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="Rate Products"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayoutshipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:layout_below="@+id/relativeLayout"
+            >
+
+            <TextView
+                android:id="@+id/reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorBack"
+                android:drawablePadding="8dp"
+                android:padding="16dp"
+                android:text="What is your review for the order?"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/rate_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawablePadding="8dp"
+                android:padding="16dp"
+                android:hint="Order Review"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/od_shipped_rate_done_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="36dp"
+                android:background="@color/colorPrimaryDark"
+                android:drawablePadding="8dp"
+                android:drawableTint="@android:color/white"
+                android:text="Review Order"
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

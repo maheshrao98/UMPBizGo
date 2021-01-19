@@ -6,19 +6,15 @@
     android:title="Products"/>
 
     <item
-        android:id="@+id/orders"
-        android:icon="@drawable/airplane"
-        android:title="Orders"/>
-
-    <item
         android:id="@+id/home"
-        android:icon="@drawable/home"
+        android:icon="@drawable/ic_home__1_"
         android:title="Home"/>
 
     <item
         android:id="@+id/feed"
-        android:icon="@drawable/goout"
+        android:icon="@drawable/chat"
         android:title="Feed"/>
+    
 
     <item
         android:id="@+id/myaccount"

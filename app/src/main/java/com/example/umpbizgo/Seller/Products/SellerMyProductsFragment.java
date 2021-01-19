@@ -14,12 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.umpbizgo.Customer.CartFragment;
 import com.example.umpbizgo.Holder.ProductViewHolder;
 import com.example.umpbizgo.Models.Products;
 import com.example.umpbizgo.R;
 import com.example.umpbizgo.Seller.Products.EditAuthorizedProductFragment;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -84,44 +87,13 @@ public class SellerMyProductsFragment extends Fragment {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                CharSequence options[] = new CharSequence[]
-                                        {
-                                                "Edit",
-                                                "Delete"
-                                        };
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setTitle("Cart Options");
-
-                                builder.setItems(options, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        if (i == 0) {
-                                            androidx.fragment.app.FragmentTransaction ft3 = getFragmentManager().beginTransaction();
-                                            EditAuthorizedProductFragment fragunauthproducts = new EditAuthorizedProductFragment();
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("pid", model.getPid());
-                                            fragunauthproducts.setArguments(bundle);
-                                            ft3.replace(R.id.frame_seller_product, fragunauthproducts);
-                                            ft3.commit();
-                                        }
-                                        if (i == 1) {
-                                            ProductReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    ProductReference.removeValue();
-                                                    StorageReference ProductImageStorageReference = FirebaseStorage.getInstance().getReferenceFromUrl(model.getImage());
-                                                    ProductImageStorageReference.delete();
-                                                }
-
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                                }
-                                            });
-                                        }
-                                    }
-                                });
-                                builder.show();
+                                androidx.fragment.app.FragmentTransaction ft3 = getFragmentManager().beginTransaction();
+                                EditAuthorizedProductFragment fragunauthproducts = new EditAuthorizedProductFragment();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("pid", model.getPid());
+                                fragunauthproducts.setArguments(bundle);
+                                ft3.replace(R.id.frame_seller_product, fragunauthproducts);
+                                ft3.commit();
                             }
                         });
                     }

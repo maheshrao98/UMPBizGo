@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#14001b</color>
-    <color name="colorPrimary">#7e6fe2</color>
-    <color name="colorPrimaryDeep">#600080</color>
-    <color name="colorAccent">#07020D</color>
-    <color name="colorAccentLight">#270034</color>
-    <color name="colorAccentDarkShade">#14001b</color>
-    <color name="colorSecondary">#db8a74</color>
-    <color name="colorSecondaryLight">#cafe48</color>
-    <color name="colorStart">#cb5ed9</color>
-    <color name="colorEnd">#8463d4</color>
+    <color name="colorSplashScreen">#4D4000</color>
+    <color name="colorPrimaryDark">#FFC107</color>
+    <color name="colorPrimary">#E4B418</color>
+    <color name="colorPrimaryDeep">#9E7B09</color>
+    <color name="colorAccent">#f1f1f3</color>
+    <color name="colorAccentLight">#815738</color>
+    <color name="colorAccentDarkShade">#FDFDFF</color>
+    <color name="colorSecondary">#8b6c4d</color>
+    <color name="colorSecondaryLight">#FF2B2A29</color>
+    <color name="colorStart">#b4a28f</color>
+    <color name="colorEnd">#b0b0af</color>
+    <color name="colorBack">#F4F1EB</color>
 </resources>

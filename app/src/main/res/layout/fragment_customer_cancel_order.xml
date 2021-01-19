@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/custcancelorder"
+    android:background="@color/colorBack"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Customer.Order.CustomerCancelOrderFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Seller.Orders.CancelOrderActivity">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/backfromcucancelorder"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/back_button_icon" />
+
+            <TextView
+                android:id="@+id/od_cucancel_order_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/cabin_medium"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="Cancel Order"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayoutshipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintVertical_bias="0.054">
+
+            <TextView
+                android:id="@+id/cureason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorBack"
+                android:drawablePadding="8dp"
+                android:padding="16dp"
+                android:text="Why you would you like to cancel order?"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorPrimaryDark" />
+
+            <EditText
+                android:id="@+id/cucancelordereason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/skip_button"
+                android:drawablePadding="8dp"
+                android:padding="16dp"
+                android:hint="Reason to cancel order"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:drawableTint="@color/colorPrimaryDark" />
+
+            <Button
+                android:id="@+id/od_cust_cancel_order_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="36dp"
+                android:background="@color/colorPrimaryDark"
+                android:drawablePadding="8dp"
+                android:drawableTint="@android:color/white"
+                android:text="Cancel Order"
+                android:textColor="@android:color/white"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
